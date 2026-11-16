@@ -40,7 +40,7 @@ cout << "Enter end time (hh mm): ";
 cin >> eh >> em;
 int s = toMinutes(sh, sm);
 int e = toMinutes(eh, em);
-if (s >= e || s < 540 || e > 1020) {
+if (sm < 0 || sm > 59 || em < 0 || em > 59 || s >= e || s < 540 || e > 1020) {
 cout << "Invalid time! Working hours: 9:00 - 17:00.\n";
 return;
 }
@@ -53,8 +53,13 @@ cout << "Slot not free!\n";
 return;
 }
 Appointment* n = new Appointment{s, e, name, nullptr, nullptr};
-if (!head) {
+if (!head || s < head->start) {
+n->next = head;
+if (head) {
+head->prev = n;
+}
 head = n;
+cout << "Appointment booked!\n";
 return;
 }
 Appointment* p = head;

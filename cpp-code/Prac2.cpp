@@ -36,10 +36,9 @@ int checker(int M,int N){
                 return 1;
             }
         }
-
-        return 0;
     }
 
+    return 0;
 }
 int main(){
     srand(time(0));
@@ -51,7 +50,7 @@ int main(){
     cout<<"Enter the initial position:";
     cin>>x>>y;
 
-    if(M<1||M<50||N<1||N>50 || x<0 || x>=M || y<0 || y>=N){
+    if(M<1||M>50||N<1||N>50 || x<0 || x>=M || y<0 || y>=N){
         cout<<"Invalid Choice;";
         return 0;
     }

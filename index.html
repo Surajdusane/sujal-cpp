@@ -117,11 +117,11 @@
         </div>
         <div class="border-b-2 border-ink p-4 sm:border-b-0 sm:border-r-2">
           <div class="font-mono text-[9.5px] uppercase tracking-[0.2em] text-ash">Lines</div>
-          <div class="mt-1 text-2xl font-bold tabular-nums">1632</div>
+          <div class="mt-1 text-2xl font-bold tabular-nums">1657</div>
         </div>
         <div class="border-r-2 border-ink p-4">
           <div class="font-mono text-[9.5px] uppercase tracking-[0.2em] text-ash">Characters</div>
-          <div class="mt-1 text-2xl font-bold tabular-nums">36,584</div>
+          <div class="mt-1 text-2xl font-bold tabular-nums">37,546</div>
         </div>
         <div class="p-4">
           <div class="font-mono text-[9.5px] uppercase tracking-[0.2em] text-ash">Language</div>
@@ -334,7 +334,7 @@ int main() {
         <pre class="code-pre"><code class="code-target"></code></pre>
       </div>
       <div class="flex items-center justify-between gap-4 border-t-2 border-ink px-4 py-2 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash">
-        <span><span class="card-lines">89</span> lines · 1471 chars</span>
+        <span><span class="card-lines">88</span> lines · 1466 chars</span>
         <span class="flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 bg-ink"></span> C++</span>
       </div>
     </div>
@@ -376,10 +376,9 @@ int checker(int M,int N){
                 return 1;
             }
         }
-
-        return 0;
     }
 
+    return 0;
 }
 int main(){
     srand(time(0));
@@ -391,7 +390,7 @@ int main(){
     cout<<"Enter the initial position:";
     cin>>x>>y;
 
-    if(M<1||M<50||N<1||N>50 || x<0 || x>=M || y<0 || y>=N){
+    if(M<1||M>50||N<1||N>50 || x<0 || x>=M || y<0 || y>=N){
         cout<<"Invalid Choice;";
         return 0;
     }
@@ -454,7 +453,7 @@ int main(){
         <pre class="code-pre"><code class="code-target"></code></pre>
       </div>
       <div class="flex items-center justify-between gap-4 border-t-2 border-ink px-4 py-2 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash">
-        <span><span class="card-lines">99</span> lines · 2092 chars</span>
+        <span><span class="card-lines">105</span> lines · 2268 chars</span>
         <span class="flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 bg-ink"></span> C++</span>
       </div>
     </div>
@@ -487,7 +486,7 @@ int main()
             cout << "Enter character: ";
             cin >> ch;
 
-            for(int i = 0; i < s.length(); i++)
+            for(int i = 0; i < (int)s.length(); i++)
             {
                 if(s[i] == ch)
                     count++;
@@ -499,6 +498,12 @@ int main()
         case 2:
             cout << "Enter start and end index: ";
             cin >> start >> end;
+
+            if(start < 0 || end > (int)s.length() || start > end)
+            {
+                cout << "Invalid indices";
+                break;
+            }
 
             cout << "Substring: ";
 
@@ -514,7 +519,7 @@ int main()
             cout << "Enter character to remove: ";
             cin >> ch;
 
-            for(int i = 0; i < s.length(); i++)
+            for(int i = 0; i < (int)s.length(); i++)
             {
                 if(s[i] != ch)
                     result += s[i];
@@ -542,7 +547,7 @@ int main()
             cout << "Enter new character: ";
             cin >> newch;
 
-            for(int i = 0; i < s.length(); i++)
+            for(int i = 0; i < (int)s.length(); i++)
             {
                 if(s[i] == ch)
                     s[i] = newch;
@@ -584,7 +589,7 @@ int main()
         <pre class="code-pre"><code class="code-target"></code></pre>
       </div>
       <div class="flex items-center justify-between gap-4 border-t-2 border-ink px-4 py-2 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash">
-        <span><span class="card-lines">72</span> lines · 1361 chars</span>
+        <span><span class="card-lines">78</span> lines · 1479 chars</span>
         <span class="flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 bg-ink"></span> C++</span>
       </div>
     </div>
@@ -601,6 +606,12 @@ int main()
 
     cout << "Enter number of non-zero elements: ";
     cin >> n;
+
+    if (n < 0 || n > 19)
+    {
+        cout << "Invalid number of non-zero elements (0-19)";
+        return 0;
+    }
 
     // Header row of original triplet matrix
     a[0][0] = r;
@@ -687,7 +698,7 @@ int main()
         <pre class="code-pre"><code class="code-target"></code></pre>
       </div>
       <div class="flex items-center justify-between gap-4 border-t-2 border-ink px-4 py-2 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash">
-        <span><span class="card-lines">106</span> lines · 1924 chars</span>
+        <span><span class="card-lines">101</span> lines · 1982 chars</span>
         <span class="flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 bg-ink"></span> C++</span>
       </div>
     </div>
@@ -714,65 +725,60 @@ using namespace std;
         }
 
         void display(){
+            bool first = true;
 
             for(int i = degree ; i>=0 ; i--){
-                if(a[i]!=0 ){
-                    cout<<a[i];
-
+                if(a[i]==0){
+                    continue;
                 }
 
-                if(i>0){
-                    cout<<"x";
-                }
-
-                if(i>1){
-                    cout<<"^"<<i;
-                }
-
-                if(i>0){
+                if(!first && a[i]>0){
                     cout<<"+";
                 }
-            }
-                cout<<endl;
 
-            
+                if(i==0){
+                    cout<<a[i];
+                }
+                else{
+                    if(a[i]!=1 && a[i]!=-1){
+                        cout<<a[i];
+                    }
+                    else if(a[i]==-1){
+                        cout<<"-";
+                    }
+
+                    cout<<"x";
+
+                    if(i>1){
+                        cout<<"^"<<i;
+                    }
+                }
+
+                first = false;
+            }
+
+            if(first){
+                cout<<"0";
+            }
+
+            cout<<endl;
         }
 
             void add(polynomial p){
                 int max = (degree>p.degree) ? degree : p.degree;
-                cout<<"Sum:";
 
-                for(int i =  max ; i>=0; i--){
+                polynomial sum;
+                sum.degree = max;
+
+                for(int i = 0 ; i<=max ; i++){
                     int x = (i<=degree) ? a[i] : 0;
                     int y = (i<=p.degree) ? p.a[i] : 0 ;
 
-
-                    int sum =  x+y;
-
-                    if(sum != 0 ){
-                        cout<<sum;
-
-                        if(i>0){
-                            cout<<"x";
-
-                        }
-                        if(i>1){
-                            cout<<"^"<<i;
-
-                        }
-
-                        if(i>0){
-                            cout<<"+";
-                        }
-                    }
+                    sum.a[i] = x + y;
                 }
 
-                    cout<<endl;
-
-
-
-                
-
+                cout<<"Sum: ";
+                sum.display();
             }
         };
 
@@ -824,7 +830,7 @@ int main(){
         <pre class="code-pre"><code class="code-target"></code></pre>
       </div>
       <div class="flex items-center justify-between gap-4 border-t-2 border-ink px-4 py-2 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash">
-        <span><span class="card-lines">241</span> lines · 4972 chars</span>
+        <span><span class="card-lines">246</span> lines · 5112 chars</span>
         <span class="flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 bg-ink"></span> C++</span>
       </div>
     </div>
@@ -870,7 +876,7 @@ cout << "Enter end time (hh mm): ";
 cin >> eh >> em;
 int s = toMinutes(sh, sm);
 int e = toMinutes(eh, em);
-if (s >= e || s < 540 || e > 1020) {
+if (sm < 0 || sm > 59 || em < 0 || em > 59 || s >= e || s < 540 || e > 1020) {
 cout << "Invalid time! Working hours: 9:00 - 17:00.\n";
 return;
 }
@@ -883,8 +889,13 @@ cout << "Slot not free!\n";
 return;
 }
 Appointment* n = new Appointment{s, e, name, nullptr, nullptr};
-if (!head) {
+if (!head || s < head->start) {
+n->next = head;
+if (head) {
+head->prev = n;
+}
 head = n;
+cout << "Appointment booked!\n";
 return;
 }
 Appointment* p = head;
@@ -1096,7 +1107,7 @@ Exiting program...
         <pre class="code-pre"><code class="code-target"></code></pre>
       </div>
       <div class="flex items-center justify-between gap-4 border-t-2 border-ink px-4 py-2 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash">
-        <span><span class="card-lines">373</span> lines · 8483 chars</span>
+        <span><span class="card-lines">365</span> lines · 8469 chars</span>
         <span class="flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 bg-ink"></span> C++</span>
       </div>
     </div>
@@ -1104,6 +1115,7 @@ Exiting program...
 #include <stack>        // For using stack
 #include <string>       // For using string
 #include <algorithm>    // For using reverse()
+#include <cctype>       // For using isalnum()
 using namespace std;
 
 
@@ -1134,6 +1146,10 @@ int priority(char c) {
     // Return 0 for other characters like brackets
     return 0;
 }
+
+
+// Forward declaration (used by infixToPrefix)
+string postfixToPrefix(string s);
 
 
 // FUNCTION 3: INFIX TO POSTFIX
@@ -1179,9 +1195,12 @@ string infixToPostfix(string s) {
         // If character is an operator
         else {
 
-            // Remove operators having higher or equal priority
+            // Remove higher priority operators.
+            // Equal priority is removed only for left-associative operators
+            // ('^' is right-associative, so it stays on the stack).
             while (!st.empty() && st.top() != '(' &&
-                   priority(c) <= priority(st.top())) {
+                   (priority(c) < priority(st.top()) ||
+                    (priority(c) == priority(st.top()) && c != '^'))) {
 
                 // Add operator to result
                 result += st.top();
@@ -1209,27 +1228,11 @@ string infixToPostfix(string s) {
 // FUNCTION 4: INFIX TO PREFIX
 string infixToPrefix(string s) {
 
-    // Step 1: Reverse the infix expression
-    reverse(s.begin(), s.end());
+    // Step 1: Convert the infix expression into postfix
+    string postfix = infixToPostfix(s);
 
-    // Step 2: Change opening brackets to closing and vice versa
-    for (int i = 0; i < s.length(); i++) {
-
-        if (s[i] == '(')
-            s[i] = ')';
-
-        else if (s[i] == ')')
-            s[i] = '(';
-    }
-
-    // Step 3: Convert reversed expression into postfix
-    string result = infixToPostfix(s);
-
-    // Step 4: Reverse postfix to get prefix
-    reverse(result.begin(), result.end());
-
-    // Return final prefix expression
-    return result;
+    // Step 2: Convert the postfix expression into prefix
+    return postfixToPrefix(postfix);
 }
 
 
@@ -1500,13 +1503,14 @@ int main() {
         <pre class="code-pre"><code class="code-target"></code></pre>
       </div>
       <div class="flex items-center justify-between gap-4 border-t-2 border-ink px-4 py-2 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash">
-        <span><span class="card-lines">50</span> lines · 821 chars</span>
+        <span><span class="card-lines">51</span> lines · 838 chars</span>
         <span class="flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 bg-ink"></span> C++</span>
       </div>
     </div>
     <script type="text/x-cpp" class="source">#include<iostream>
 #include<string>
 #include<stack>
+#include<cctype>
 using namespace std;
 
 string reverse(string str){
@@ -1581,7 +1585,7 @@ int main(){
         <pre class="code-pre"><code class="code-target"></code></pre>
       </div>
       <div class="flex items-center justify-between gap-4 border-t-2 border-ink px-4 py-2 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash">
-        <span><span class="card-lines">72</span> lines · 1287 chars</span>
+        <span><span class="card-lines">75</span> lines · 1439 chars</span>
         <span class="flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 bg-ink"></span> C++</span>
       </div>
     </div>
@@ -1610,27 +1614,26 @@ int main(){
         case 1:
              if(q.size() == MAX){
                 cout<<"Max orders are there";
-
              }
-
              else{
-                cout<<"Enter order nummber";
+                cout<<"Enter order number: ";
                 cin>>order;
-             
-             q.push(order);
-             cout<<"Order placed";
+
+                q.push(order);
+                cout<<"Order placed";
              }
              break;
 
         case 2:
              if (!q.empty()){
-
-                cout<<"Order Served";
-                cout<< q.front();
+                cout<<"Order Served: "<<q.front()<<endl;
                 q.pop();
-
+             }
+             else{
+                cout<<"No orders to serve";
              }
              break;
+
         case 3:
              if(!q.empty()){
                 queue<int> tem = q;
@@ -1638,24 +1641,28 @@ int main(){
                 while(!tem.empty()){
                     cout<<tem.front()<<endl;
                     tem.pop();
-
                 }
 
                 cout<<endl;
-
-                break;
              }
-             
+             else{
+                cout<<"No orders in queue";
+             }
+             break;
+
         case 4:
            cout<<"EXITING";
+           break;
 
-        default:cout<<"Invalid Choice";   
-    }   
+        default:
+           cout<<"Invalid Choice";
+    }
     
 }
 
     while(choice!=4);
 
+    return 0;
 }    </script>
   </article>
 
@@ -1684,7 +1691,7 @@ int main(){
         <pre class="code-pre"><code class="code-target"></code></pre>
       </div>
       <div class="flex items-center justify-between gap-4 border-t-2 border-ink px-4 py-2 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash">
-        <span><span class="card-lines">135</span> lines · 3726 chars</span>
+        <span><span class="card-lines">144</span> lines · 3915 chars</span>
         <span class="flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 bg-ink"></span> C++</span>
       </div>
     </div>
@@ -1703,6 +1710,7 @@ Use Standard Template Library (STL) sort function
 #include <iostream>
 #include <algorithm> 
 #include <cstdlib>   
+#include <ctime>     
 using namespace std;
 
 class Sorting {
@@ -1785,8 +1793,16 @@ public:
 int main() {
     Sorting s;
     int n, choice;
+    srand((unsigned)time(0));
+
     cout << "Enter number of students: ";
     cin >> n;
+
+    if (n < 1 || n > 100) {
+        cout << "Invalid number of students! Enter a value between 1 and 100.\n";
+        return 0;
+    }
+
     float arr[100];
 
     cout << "1. Manual Input\n2. Random Data\nEnter choice: ";
@@ -1850,7 +1866,7 @@ int main() {
         <pre class="code-pre"><code class="code-target"></code></pre>
       </div>
       <div class="flex items-center justify-between gap-4 border-t-2 border-ink px-4 py-2 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash">
-        <span><span class="card-lines">112</span> lines · 3111 chars</span>
+        <span><span class="card-lines">121</span> lines · 3242 chars</span>
         <span class="flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 bg-ink"></span> C++</span>
       </div>
     </div>
@@ -1880,6 +1896,10 @@ public:
     HashTable(int size) {
         SIZE = size;
         table = new list<pair<int, string>>[SIZE];
+    }
+
+    ~HashTable() {
+        delete[] table;
     }
 
     void insert(int key, string value) {
@@ -1933,6 +1953,11 @@ int main() {
     int size;
     cout << "Enter size of hash table: ";
     cin >> size;
+
+    if (size <= 0) {
+        cout << "Invalid size!\n";
+        return 0;
+    }
 
     HashTable dict(size);
     int choice, key;
@@ -2172,7 +2197,7 @@ int main() {
       <div>
         <div class="font-mono text-[9.5px] uppercase tracking-[0.3em] text-paper/50">// EOF</div>
         <p class="mt-2 text-xl font-bold uppercase tracking-tight sm:text-2xl">Copy. Paste. Compile.</p>
-        <p class="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-paper/50">12 files · 1632 lines · one page</p>
+        <p class="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-paper/50">12 files · 1657 lines · one page</p>
       </div>
       <a href="#" class="border-2 border-paper px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.18em] transition hover:bg-paper hover:text-ink">Back to top ↑</a>
     </div>

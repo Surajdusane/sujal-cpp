@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 #include<stack>
+#include<cctype>
 using namespace std;
 
 string reverse(string str){

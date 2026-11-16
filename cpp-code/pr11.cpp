@@ -26,6 +26,10 @@ public:
         table = new list<pair<int, string>>[SIZE];
     }
 
+    ~HashTable() {
+        delete[] table;
+    }
+
     void insert(int key, string value) {
         int index = hashFunction(key);
         for (auto &p : table[index]) {
@@ -77,6 +81,11 @@ int main() {
     int size;
     cout << "Enter size of hash table: ";
     cin >> size;
+
+    if (size <= 0) {
+        cout << "Invalid size!\n";
+        return 0;
+    }
 
     HashTable dict(size);
     int choice, key;

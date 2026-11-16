@@ -3,6 +3,7 @@
 #include <stack>        // For using stack
 #include <string>       // For using string
 #include <algorithm>    // For using reverse()
+#include <cctype>       // For using isalnum()
 using namespace std;
 
 
@@ -33,6 +34,10 @@ int priority(char c) {
     // Return 0 for other characters like brackets
     return 0;
 }
+
+
+// Forward declaration (used by infixToPrefix)
+string postfixToPrefix(string s);
 
 
 // FUNCTION 3: INFIX TO POSTFIX
@@ -78,9 +83,12 @@ string infixToPostfix(string s) {
         // If character is an operator
         else {
 
-            // Remove operators having higher or equal priority
+            // Remove higher priority operators.
+            // Equal priority is removed only for left-associative operators
+            // ('^' is right-associative, so it stays on the stack).
             while (!st.empty() && st.top() != '(' &&
-                   priority(c) <= priority(st.top())) {
+                   (priority(c) < priority(st.top()) ||
+                    (priority(c) == priority(st.top()) && c != '^'))) {
 
                 // Add operator to result
                 result += st.top();
@@ -108,27 +116,11 @@ string infixToPostfix(string s) {
 // FUNCTION 4: INFIX TO PREFIX
 string infixToPrefix(string s) {
 
-    // Step 1: Reverse the infix expression
-    reverse(s.begin(), s.end());
+    // Step 1: Convert the infix expression into postfix
+    string postfix = infixToPostfix(s);
 
-    // Step 2: Change opening brackets to closing and vice versa
-    for (int i = 0; i < s.length(); i++) {
-
-        if (s[i] == '(')
-            s[i] = ')';
-
-        else if (s[i] == ')')
-            s[i] = '(';
-    }
-
-    // Step 3: Convert reversed expression into postfix
-    string result = infixToPostfix(s);
-
-    // Step 4: Reverse postfix to get prefix
-    reverse(result.begin(), result.end());
-
-    // Return final prefix expression
-    return result;
+    // Step 2: Convert the postfix expression into prefix
+    return postfixToPrefix(postfix);
 }
 
 

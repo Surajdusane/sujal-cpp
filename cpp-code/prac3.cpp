@@ -28,7 +28,7 @@ int main()
             cout << "Enter character: ";
             cin >> ch;
 
-            for(int i = 0; i < s.length(); i++)
+            for(int i = 0; i < (int)s.length(); i++)
             {
                 if(s[i] == ch)
                     count++;
@@ -40,6 +40,12 @@ int main()
         case 2:
             cout << "Enter start and end index: ";
             cin >> start >> end;
+
+            if(start < 0 || end > (int)s.length() || start > end)
+            {
+                cout << "Invalid indices";
+                break;
+            }
 
             cout << "Substring: ";
 
@@ -55,7 +61,7 @@ int main()
             cout << "Enter character to remove: ";
             cin >> ch;
 
-            for(int i = 0; i < s.length(); i++)
+            for(int i = 0; i < (int)s.length(); i++)
             {
                 if(s[i] != ch)
                     result += s[i];
@@ -83,7 +89,7 @@ int main()
             cout << "Enter new character: ";
             cin >> newch;
 
-            for(int i = 0; i < s.length(); i++)
+            for(int i = 0; i < (int)s.length(); i++)
             {
                 if(s[i] == ch)
                     s[i] = newch;

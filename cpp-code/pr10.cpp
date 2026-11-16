@@ -13,6 +13,7 @@ Use Standard Template Library (STL) sort function
 #include <iostream>
 #include <algorithm> 
 #include <cstdlib>   
+#include <ctime>     
 using namespace std;
 
 class Sorting {
@@ -95,8 +96,16 @@ public:
 int main() {
     Sorting s;
     int n, choice;
+    srand((unsigned)time(0));
+
     cout << "Enter number of students: ";
     cin >> n;
+
+    if (n < 1 || n > 100) {
+        cout << "Invalid number of students! Enter a value between 1 and 100.\n";
+        return 0;
+    }
+
     float arr[100];
 
     cout << "1. Manual Input\n2. Random Data\nEnter choice: ";

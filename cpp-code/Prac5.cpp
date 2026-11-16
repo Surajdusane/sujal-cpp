@@ -21,65 +21,60 @@ using namespace std;
         }
 
         void display(){
+            bool first = true;
 
             for(int i = degree ; i>=0 ; i--){
-                if(a[i]!=0 ){
-                    cout<<a[i];
-
+                if(a[i]==0){
+                    continue;
                 }
 
-                if(i>0){
-                    cout<<"x";
-                }
-
-                if(i>1){
-                    cout<<"^"<<i;
-                }
-
-                if(i>0){
+                if(!first && a[i]>0){
                     cout<<"+";
                 }
-            }
-                cout<<endl;
 
-            
+                if(i==0){
+                    cout<<a[i];
+                }
+                else{
+                    if(a[i]!=1 && a[i]!=-1){
+                        cout<<a[i];
+                    }
+                    else if(a[i]==-1){
+                        cout<<"-";
+                    }
+
+                    cout<<"x";
+
+                    if(i>1){
+                        cout<<"^"<<i;
+                    }
+                }
+
+                first = false;
+            }
+
+            if(first){
+                cout<<"0";
+            }
+
+            cout<<endl;
         }
 
             void add(polynomial p){
                 int max = (degree>p.degree) ? degree : p.degree;
-                cout<<"Sum:";
 
-                for(int i =  max ; i>=0; i--){
+                polynomial sum;
+                sum.degree = max;
+
+                for(int i = 0 ; i<=max ; i++){
                     int x = (i<=degree) ? a[i] : 0;
                     int y = (i<=p.degree) ? p.a[i] : 0 ;
 
-
-                    int sum =  x+y;
-
-                    if(sum != 0 ){
-                        cout<<sum;
-
-                        if(i>0){
-                            cout<<"x";
-
-                        }
-                        if(i>1){
-                            cout<<"^"<<i;
-
-                        }
-
-                        if(i>0){
-                            cout<<"+";
-                        }
-                    }
+                    sum.a[i] = x + y;
                 }
 
-                    cout<<endl;
-
-
-
-                
-
+                cout<<"Sum: ";
+                sum.display();
             }
         };
 

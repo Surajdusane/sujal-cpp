@@ -12,6 +12,12 @@ int main()
     cout << "Enter number of non-zero elements: ";
     cin >> n;
 
+    if (n < 0 || n > 19)
+    {
+        cout << "Invalid number of non-zero elements (0-19)";
+        return 0;
+    }
+
     // Header row of original triplet matrix
     a[0][0] = r;
     a[0][1] = c;
