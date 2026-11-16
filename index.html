@@ -1,0 +1,2370 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>All Code. One Page. — C++ Practical Archive</title>
+<meta name="description" content="Every C++ practical program in one monochrome, neo-brutalist page. Read the full source and copy any program with a single click." />
+<meta name="theme-color" content="#f1efe9" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23111111'/><text x='50' y='70' font-family='monospace' font-size='48' font-weight='bold' fill='%23f1efe9' text-anchor='middle'>&lt;/&gt;</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          paper: '#f1efe9',
+          card: '#fbfaf6',
+          ink: '#111111',
+          ash: '#6f6c64'
+        },
+        boxShadow: {
+          brutal: '6px 6px 0 0 #111111',
+          'brutal-sm': '3px 3px 0 0 #111111'
+        },
+        fontFamily: {
+          sans: ['"Space Grotesk"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace']
+        }
+      }
+    }
+  };
+</script>
+<style>
+  html { -webkit-text-size-adjust: 100%; color-scheme: light; }
+  body {
+    background-color: #f1efe9;
+    background-image: radial-gradient(rgba(17, 17, 17, 0.06) 1px, transparent 1px);
+    background-size: 18px 18px;
+    background-position: -1px -1px;
+  }
+  ::selection { background: #111111; color: #f1efe9; }
+  .code-scroll { scrollbar-width: thin; scrollbar-color: #111111 #fbfaf6; }
+  .code-scroll::-webkit-scrollbar { height: 11px; }
+  .code-scroll::-webkit-scrollbar-track { background: #fbfaf6; border-top: 1px solid #e6e3da; }
+  .code-scroll::-webkit-scrollbar-thumb { background: #111111; border: 3px solid #fbfaf6; }
+  .code-pre { margin: 0; padding: 0.85rem 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; line-height: 1.8; }
+  .cl { display: flex; width: max-content; min-width: 100%; }
+  .cl:hover { background: #f4f2ec; }
+  .ln {
+    position: sticky; left: 0; z-index: 1; flex: 0 0 3.4rem; width: 3.4rem;
+    padding: 0 0.85rem 0 0.5rem; text-align: right; color: #aca89f;
+    background: #fbfaf6; border-right: 1px solid #e6e3da;
+    user-select: none; -webkit-user-select: none;
+  }
+  .cl:hover .ln { background: #f4f2ec; color: #111111; }
+  .lc { flex: 1 0 auto; padding: 0 1.5rem 0 1rem; white-space: pre; color: #1b1b1b; }
+  .tok-comment { color: #9b978e; font-style: italic; }
+  .tok-string { color: #66625a; }
+  .tok-pre { color: #111111; font-weight: 700; }
+  .tok-key { color: #111111; font-weight: 700; }
+  .tok-num { color: #57534b; }
+  .copy-btn.copied { background: #111111; color: #f1efe9; }
+  .copy-btn.copied:hover { background: #111111; }
+  input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body class="bg-paper font-sans text-ink antialiased">
+
+  <noscript>
+    <div class="border-b-2 border-ink bg-ink px-5 py-3 text-center font-mono text-[10px] uppercase tracking-[0.2em] text-paper">
+      JavaScript is required to render the code blocks and copy buttons.
+    </div>
+  </noscript>
+
+  <div class="border-b-2 border-ink bg-ink text-paper">
+    <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-2 font-mono text-[9.5px] uppercase tracking-[0.22em] sm:px-8">
+      <span class="flex items-center gap-2"><span class="inline-block h-1.5 w-1.5 bg-paper"></span> C++ Practical Archive</span>
+      <span class="hidden sm:inline">Read · Copy · Compile</span>
+      <span>Vol. 01 / 2026</span>
+    </div>
+  </div>
+
+  <header class="border-b-2 border-ink">
+    <div class="mx-auto max-w-6xl px-5 pb-10 pt-10 sm:px-8 sm:pb-12 sm:pt-14">
+      <div class="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.28em] text-ash">
+        <span class="inline-block h-2 w-2 bg-ink"></span>
+        <span>// Semester practicals</span>
+      </div>
+
+      <h1 class="mt-4 text-[15.5vw] font-bold uppercase leading-[0.82] tracking-[-0.045em] sm:text-8xl lg:text-[7.5rem]">
+        All code.<br />One&nbsp;page.
+      </h1>
+
+      <div class="mt-8 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
+        <p class="max-w-xl text-sm leading-relaxed text-ash">
+          Every <span class="font-mono text-ink">.cpp</span> file from
+          <span class="border-b border-ink font-mono text-ink">/cpp-code</span>
+          laid out end to end on one screen. Hit
+          <span class="font-mono text-[11px] font-bold uppercase tracking-widest text-ink">copy</span>
+          on any block to grab the complete source exactly as written — nothing truncated, nothing hidden.
+        </p>
+        <a href="#p1" class="inline-flex w-fit items-center gap-2 border-2 border-ink bg-card px-4 py-2.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] shadow-brutal-sm transition hover:-translate-y-0.5 hover:bg-ink hover:text-paper">
+          Start reading <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+
+      <div class="mt-10 grid grid-cols-2 border-2 border-ink bg-card sm:grid-cols-4">
+        <div class="border-b-2 border-r-2 border-ink p-4 sm:border-b-0">
+          <div class="font-mono text-[9.5px] uppercase tracking-[0.2em] text-ash">Programs</div>
+          <div class="mt-1 text-2xl font-bold tabular-nums">12</div>
+        </div>
+        <div class="border-b-2 border-ink p-4 sm:border-b-0 sm:border-r-2">
+          <div class="font-mono text-[9.5px] uppercase tracking-[0.2em] text-ash">Lines</div>
+          <div class="mt-1 text-2xl font-bold tabular-nums">1632</div>
+        </div>
+        <div class="border-r-2 border-ink p-4">
+          <div class="font-mono text-[9.5px] uppercase tracking-[0.2em] text-ash">Characters</div>
+          <div class="mt-1 text-2xl font-bold tabular-nums">36,584</div>
+        </div>
+        <div class="p-4">
+          <div class="font-mono text-[9.5px] uppercase tracking-[0.2em] text-ash">Language</div>
+          <div class="mt-1 text-2xl font-bold">C++17</div>
+        </div>
+      </div>
+
+      <nav class="mt-8 flex flex-wrap items-center gap-2" aria-label="Program index">
+        <span class="mr-1 font-mono text-[9.5px] uppercase tracking-[0.2em] text-ash">Index</span>
+      <a href="#p1" title="Student Event Membership" class="border-2 border-ink bg-card px-2.5 py-1 font-mono text-[11px] font-bold tabular-nums transition hover:-translate-y-0.5 hover:bg-ink hover:text-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">01</a>
+      <a href="#p2" title="Random Tile Walker" class="border-2 border-ink bg-card px-2.5 py-1 font-mono text-[11px] font-bold tabular-nums transition hover:-translate-y-0.5 hover:bg-ink hover:text-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">02</a>
+      <a href="#p3" title="String Operations Menu" class="border-2 border-ink bg-card px-2.5 py-1 font-mono text-[11px] font-bold tabular-nums transition hover:-translate-y-0.5 hover:bg-ink hover:text-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">03</a>
+      <a href="#p4" title="Sparse Matrix Transpose" class="border-2 border-ink bg-card px-2.5 py-1 font-mono text-[11px] font-bold tabular-nums transition hover:-translate-y-0.5 hover:bg-ink hover:text-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">04</a>
+      <a href="#p5" title="Polynomial Addition" class="border-2 border-ink bg-card px-2.5 py-1 font-mono text-[11px] font-bold tabular-nums transition hover:-translate-y-0.5 hover:bg-ink hover:text-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">05</a>
+      <a href="#p6" title="Appointment Scheduler" class="border-2 border-ink bg-card px-2.5 py-1 font-mono text-[11px] font-bold tabular-nums transition hover:-translate-y-0.5 hover:bg-ink hover:text-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">06</a>
+      <a href="#p7" title="Expression Conversion" class="border-2 border-ink bg-card px-2.5 py-1 font-mono text-[11px] font-bold tabular-nums transition hover:-translate-y-0.5 hover:bg-ink hover:text-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">07</a>
+      <a href="#p8" title="Reverse &amp; Palindrome" class="border-2 border-ink bg-card px-2.5 py-1 font-mono text-[11px] font-bold tabular-nums transition hover:-translate-y-0.5 hover:bg-ink hover:text-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">08</a>
+      <a href="#p9" title="Order Queue" class="border-2 border-ink bg-card px-2.5 py-1 font-mono text-[11px] font-bold tabular-nums transition hover:-translate-y-0.5 hover:bg-ink hover:text-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">09</a>
+      <a href="#p10" title="Sorting Marks" class="border-2 border-ink bg-card px-2.5 py-1 font-mono text-[11px] font-bold tabular-nums transition hover:-translate-y-0.5 hover:bg-ink hover:text-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">10</a>
+      <a href="#p11" title="Dictionary Hash Table" class="border-2 border-ink bg-card px-2.5 py-1 font-mono text-[11px] font-bold tabular-nums transition hover:-translate-y-0.5 hover:bg-ink hover:text-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">11</a>
+      <a href="#p12" title="Environment Analysis" class="border-2 border-ink bg-card px-2.5 py-1 font-mono text-[11px] font-bold tabular-nums transition hover:-translate-y-0.5 hover:bg-ink hover:text-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">12</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="sticky top-0 z-40 border-b-2 border-ink bg-paper/95 backdrop-blur">
+    <div class="mx-auto flex max-w-6xl flex-wrap items-center gap-x-4 gap-y-2 px-5 py-3 sm:px-8">
+      <div class="relative w-full sm:w-80 sm:flex-none">
+        <svg class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="search" type="search" placeholder="SEARCH TITLE, FILE OR TAG…" autocomplete="off" spellcheck="false" class="w-full border-2 border-ink bg-card py-2 pl-9 pr-3 font-mono text-[10.5px] uppercase tracking-[0.14em] placeholder:text-ash/80 focus:shadow-brutal-sm focus:outline-none" aria-label="Search programs" />
+      </div>
+      <div id="count" class="font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash" aria-live="polite">Showing 12 / 12</div>
+      <button id="toggle-all" type="button" class="ml-auto border-2 border-ink bg-card px-3 py-2 font-mono text-[9.5px] font-bold uppercase tracking-[0.16em] shadow-brutal-sm transition hover:bg-ink hover:text-paper">Collapse all</button>
+    </div>
+  </div>
+
+  <main class="mx-auto max-w-6xl px-5 py-10 sm:px-8 sm:py-12">
+    <div id="grid" class="grid gap-8 sm:gap-10">
+  <article id="p1" class="program min-w-0 scroll-mt-32 border-2 border-ink bg-card shadow-brutal" data-search="student event membership prac1.cpp set logic / oop set operations across coding, project, mastermind &amp; paper events">
+    <div class="flex flex-wrap items-stretch border-b-2 border-ink">
+      <div class="flex w-14 shrink-0 items-center justify-center border-r-2 border-ink bg-ink font-mono text-sm font-bold tabular-nums text-paper">01</div>
+      <div class="min-w-0 flex-1 px-4 py-3">
+        <h2 class="text-base font-bold uppercase leading-tight tracking-tight sm:text-lg">Student Event Membership</h2>
+        <p class="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ash">
+          <span class="text-ink">prac1.cpp</span>
+          <span aria-hidden="true">/</span>
+          <span>SET LOGIC / OOP</span>
+        </p>
+        <p class="mt-1.5 max-w-xl text-[12.5px] leading-snug text-ash">Set operations across coding, project, mastermind &amp; paper events</p>
+      </div>
+      <div class="flex w-full items-stretch border-t-2 border-ink sm:w-auto sm:border-l-2 sm:border-t-0">
+        <button type="button" class="copy-btn flex flex-1 items-center justify-center gap-2 border-r-2 border-ink px-4 py-2.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper sm:w-28 sm:flex-none" data-copy aria-label="Copy the full source of prac1.cpp">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="9" y="9" width="12" height="12"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>
+          <span class="copy-label">Copy</span>
+        </button>
+        <button type="button" class="toggle-btn w-11 shrink-0 text-lg font-bold leading-none transition-colors hover:bg-ink hover:text-paper" data-toggle aria-expanded="true" aria-label="Toggle code for prac1.cpp">−</button>
+      </div>
+    </div>
+    <div class="code-wrap">
+      <div class="code-scroll overflow-x-auto">
+        <pre class="code-pre"><code class="code-target"></code></pre>
+      </div>
+      <div class="flex items-center justify-between gap-4 border-t-2 border-ink px-4 py-2 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash">
+        <span><span class="card-lines">118</span> lines · 2822 chars</span>
+        <span class="flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 bg-ink"></span> C++</span>
+      </div>
+    </div>
+    <script type="text/x-cpp" class="source">#include <iostream>
+#include <string>
+using namespace std;
+
+class Student {
+    string code[10], project[10], master[10], paper[10];
+    int s1, s2, s3, s4;
+
+    // Function to search a name in an array
+    bool search(string a[], int n, string name) {
+        for (int i = 0; i < n; i++) {
+            if (a[i] == name)
+                return true;
+        }
+        return false;
+    }
+
+public:
+
+    // Input function
+    void getdata() {
+        cout << "Enter coding students count: ";
+        cin >> s1;
+        for (int i = 0; i < s1; i++)
+            cin >> code[i];
+
+        cout << "Enter project students count: ";
+        cin >> s2;
+        for (int i = 0; i < s2; i++)
+            cin >> project[i];
+
+        cout << "Enter mastermind students count: ";
+        cin >> s3;
+        for (int i = 0; i < s3; i++)
+            cin >> master[i];
+
+        cout << "Enter paper students count: ";
+        cin >> s4;
+        for (int i = 0; i < s4; i++)
+            cin >> paper[i];
+    }
+
+    // 1. Coding AND Project
+    void second() {
+        cout << "Both Coding and Project: ";
+
+        for (int i = 0; i < s1; i++) {
+            if (search(project, s2, code[i]))
+                cout << code[i] << " ";
+        }
+    }
+
+    // 2. Coding OR Project
+    void third() {
+        cout << "Coding OR Project: ";
+
+        for (int i = 0; i < s1; i++)
+            cout << code[i] << " ";
+
+        for (int i = 0; i < s2; i++) {
+            if (!search(code, s1, project[i]))
+                cout << project[i] << " ";
+        }
+    }
+
+    // 3. Coding BUT NOT Mastermind
+    void fourth() {
+        cout << "Coding but NOT Mastermind: ";
+
+        for (int i = 0; i < s1; i++) {
+            if (!search(master, s3, code[i]))
+                cout << code[i] << " ";
+        }
+    }
+
+    // 4. Students in all four events
+    void getall() {
+        cout << "Students in all events: ";
+
+        for (int i = 0; i < s1; i++) {
+            if (search(project, s2, code[i]) &&
+                search(master, s3, code[i]) &&
+                search(paper, s4, code[i])) {
+                cout << code[i] << " ";
+            }
+        }
+    }
+};
+
+int main() {
+    Student s;
+    int choice;
+
+    s.getdata();
+
+    do {
+        cout << "\n\n1. Both Coding and Project";
+        cout << "\n2. Coding OR Project";
+        cout << "\n3. Coding but NOT Mastermind";
+        cout << "\n4. Students in all events";
+        cout << "\n5. Exit";
+
+        cout << "\nEnter choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: s.second(); break;
+            case 2: s.third(); break;
+            case 3: s.fourth(); break;
+            case 4: s.getall(); break;
+            case 5: cout << "Exiting..."; break;
+            default: cout << "Invalid choice";
+        }
+
+    } while (choice != 5);
+
+    return 0;
+}</script>
+  </article>
+
+  <article id="p2" class="program min-w-0 scroll-mt-32 border-2 border-ink bg-card shadow-brutal" data-search="random tile walker prac2.cpp arrays / randomization random 8-direction walk that visits every tile on the grid">
+    <div class="flex flex-wrap items-stretch border-b-2 border-ink">
+      <div class="flex w-14 shrink-0 items-center justify-center border-r-2 border-ink bg-ink font-mono text-sm font-bold tabular-nums text-paper">02</div>
+      <div class="min-w-0 flex-1 px-4 py-3">
+        <h2 class="text-base font-bold uppercase leading-tight tracking-tight sm:text-lg">Random Tile Walker</h2>
+        <p class="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ash">
+          <span class="text-ink">Prac2.cpp</span>
+          <span aria-hidden="true">/</span>
+          <span>ARRAYS / RANDOMIZATION</span>
+        </p>
+        <p class="mt-1.5 max-w-xl text-[12.5px] leading-snug text-ash">Random 8-direction walk that visits every tile on the grid</p>
+      </div>
+      <div class="flex w-full items-stretch border-t-2 border-ink sm:w-auto sm:border-l-2 sm:border-t-0">
+        <button type="button" class="copy-btn flex flex-1 items-center justify-center gap-2 border-r-2 border-ink px-4 py-2.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper sm:w-28 sm:flex-none" data-copy aria-label="Copy the full source of Prac2.cpp">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="9" y="9" width="12" height="12"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>
+          <span class="copy-label">Copy</span>
+        </button>
+        <button type="button" class="toggle-btn w-11 shrink-0 text-lg font-bold leading-none transition-colors hover:bg-ink hover:text-paper" data-toggle aria-expanded="true" aria-label="Toggle code for Prac2.cpp">−</button>
+      </div>
+    </div>
+    <div class="code-wrap">
+      <div class="code-scroll overflow-x-auto">
+        <pre class="code-pre"><code class="code-target"></code></pre>
+      </div>
+      <div class="flex items-center justify-between gap-4 border-t-2 border-ink px-4 py-2 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash">
+        <span><span class="card-lines">89</span> lines · 1471 chars</span>
+        <span class="flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 bg-ink"></span> C++</span>
+      </div>
+    </div>
+    <script type="text/x-cpp" class="source">#include<iostream>
+#include<cstdlib>
+#include<ctime>
+
+using namespace std;
+
+int Tiles[50][50];
+
+void display_tiles(int M,int N){
+
+    cout<<"\nTiles to walk:\n";
+
+    for(int i = 0; i<M ; i++){
+        for(int j=0;j<N;j++)
+            cout<<"__";
+    
+        cout<<endl;
+
+        for(int j=0;j<N;j++)
+            cout<<"|"<<i<<j;
+     
+        cout<<"|"<<endl;
+        
+    }
+
+    for(int j = 0; j<N;j++)
+        cout<<"__";
+
+     cout<<endl;
+}
+
+int checker(int M,int N){
+    for(int i=0;i<M;i++){
+        for(int j = 0 ; j<N;j++){
+            if(Tiles[i][j] == 0){
+                return 1;
+            }
+        }
+
+        return 0;
+    }
+
+}
+int main(){
+    srand(time(0));
+    int M,N,x,y;
+    int moves = 0;
+
+    cout<<"Enter tiles dimesnion (M*N):";
+    cin>>M>>N;
+    cout<<"Enter the initial position:";
+    cin>>x>>y;
+
+    if(M<1||M<50||N<1||N>50 || x<0 || x>=M || y<0 || y>=N){
+        cout<<"Invalid Choice;";
+        return 0;
+    }
+
+    display_tiles(M,N);
+
+    Tiles[x][y] = 1;
+
+    cout<<"("<<x<<","<<y<<")";
+
+    int dx[8] = {-1,-1,-1,0,0,1,1,1};
+    int dy[8] = {-1,0,1,-1,1,-1,0,1};
+
+    while(checker(M,N)){
+        int r = rand() % 8;
+
+        int a = x + dx[r];
+        int b = y + dy[r];
+        
+        if(a>=0 && a<M && b>=0 && b<N){
+            x = a;
+            y = b;
+            Tiles[x][y] = 1;
+            cout << "\n(" << x << "," << y << ")";
+            moves++;
+        }
+    }
+
+    cout<<"Total Moves:"<<moves;
+
+    return 0;
+
+
+    
+}</script>
+  </article>
+
+  <article id="p3" class="program min-w-0 scroll-mt-32 border-2 border-ink bg-card shadow-brutal" data-search="string operations menu prac3.cpp strings / menu frequency, substring, remove, palindrome and replace">
+    <div class="flex flex-wrap items-stretch border-b-2 border-ink">
+      <div class="flex w-14 shrink-0 items-center justify-center border-r-2 border-ink bg-ink font-mono text-sm font-bold tabular-nums text-paper">03</div>
+      <div class="min-w-0 flex-1 px-4 py-3">
+        <h2 class="text-base font-bold uppercase leading-tight tracking-tight sm:text-lg">String Operations Menu</h2>
+        <p class="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ash">
+          <span class="text-ink">prac3.cpp</span>
+          <span aria-hidden="true">/</span>
+          <span>STRINGS / MENU</span>
+        </p>
+        <p class="mt-1.5 max-w-xl text-[12.5px] leading-snug text-ash">Frequency, substring, remove, palindrome and replace</p>
+      </div>
+      <div class="flex w-full items-stretch border-t-2 border-ink sm:w-auto sm:border-l-2 sm:border-t-0">
+        <button type="button" class="copy-btn flex flex-1 items-center justify-center gap-2 border-r-2 border-ink px-4 py-2.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper sm:w-28 sm:flex-none" data-copy aria-label="Copy the full source of prac3.cpp">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="9" y="9" width="12" height="12"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>
+          <span class="copy-label">Copy</span>
+        </button>
+        <button type="button" class="toggle-btn w-11 shrink-0 text-lg font-bold leading-none transition-colors hover:bg-ink hover:text-paper" data-toggle aria-expanded="true" aria-label="Toggle code for prac3.cpp">−</button>
+      </div>
+    </div>
+    <div class="code-wrap">
+      <div class="code-scroll overflow-x-auto">
+        <pre class="code-pre"><code class="code-target"></code></pre>
+      </div>
+      <div class="flex items-center justify-between gap-4 border-t-2 border-ink px-4 py-2 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash">
+        <span><span class="card-lines">99</span> lines · 2092 chars</span>
+        <span class="flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 bg-ink"></span> C++</span>
+      </div>
+    </div>
+    <script type="text/x-cpp" class="source">#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string s, rev = "";
+    int choice, count = 0, start, end;
+    char ch, newch;
+
+    cout << "----- String Operations -----\n";
+    cout << "1. Frequency of character\n";
+    cout << "2. Extract substring\n";
+    cout << "3. Remove character\n";
+    cout << "4. Check palindrome\n";
+    cout << "5. Replace character\n";
+
+    cout << "Enter your choice: ";
+    cin >> choice;
+
+    cout << "Enter the string: ";
+    cin >> s;
+
+    switch(choice)
+    {
+        case 1:
+            cout << "Enter character: ";
+            cin >> ch;
+
+            for(int i = 0; i < s.length(); i++)
+            {
+                if(s[i] == ch)
+                    count++;
+            }
+
+            cout << "Frequency = " << count;
+            break;
+
+        case 2:
+            cout << "Enter start and end index: ";
+            cin >> start >> end;
+
+            cout << "Substring: ";
+
+            for(int i = start; i < end; i++)
+                cout << s[i];
+
+            break;
+
+        case 3:
+        {
+            string result = "";
+
+            cout << "Enter character to remove: ";
+            cin >> ch;
+
+            for(int i = 0; i < s.length(); i++)
+            {
+                if(s[i] != ch)
+                    result += s[i];
+            }
+
+            cout << "Remaining string: " << result;
+            break;
+        }
+
+        case 4:
+            for(int i = s.length()-1; i >= 0; i--)
+                rev += s[i];
+
+            if(s == rev)
+                cout << "Palindrome";
+            else
+                cout << "Not Palindrome";
+
+            break;
+
+        case 5:
+            cout << "Enter character to replace: ";
+            cin >> ch;
+
+            cout << "Enter new character: ";
+            cin >> newch;
+
+            for(int i = 0; i < s.length(); i++)
+            {
+                if(s[i] == ch)
+                    s[i] = newch;
+            }
+
+            cout << "Modified string: " << s;
+            break;
+
+        default:
+            cout << "Invalid choice";
+    }
+
+    return 0;
+}</script>
+  </article>
+
+  <article id="p4" class="program min-w-0 scroll-mt-32 border-2 border-ink bg-card shadow-brutal" data-search="sparse matrix transpose prac4.cpp matrices / triplets triplet representation and transpose of a sparse matrix">
+    <div class="flex flex-wrap items-stretch border-b-2 border-ink">
+      <div class="flex w-14 shrink-0 items-center justify-center border-r-2 border-ink bg-ink font-mono text-sm font-bold tabular-nums text-paper">04</div>
+      <div class="min-w-0 flex-1 px-4 py-3">
+        <h2 class="text-base font-bold uppercase leading-tight tracking-tight sm:text-lg">Sparse Matrix Transpose</h2>
+        <p class="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ash">
+          <span class="text-ink">prac4.cpp</span>
+          <span aria-hidden="true">/</span>
+          <span>MATRICES / TRIPLETS</span>
+        </p>
+        <p class="mt-1.5 max-w-xl text-[12.5px] leading-snug text-ash">Triplet representation and transpose of a sparse matrix</p>
+      </div>
+      <div class="flex w-full items-stretch border-t-2 border-ink sm:w-auto sm:border-l-2 sm:border-t-0">
+        <button type="button" class="copy-btn flex flex-1 items-center justify-center gap-2 border-r-2 border-ink px-4 py-2.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper sm:w-28 sm:flex-none" data-copy aria-label="Copy the full source of prac4.cpp">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="9" y="9" width="12" height="12"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>
+          <span class="copy-label">Copy</span>
+        </button>
+        <button type="button" class="toggle-btn w-11 shrink-0 text-lg font-bold leading-none transition-colors hover:bg-ink hover:text-paper" data-toggle aria-expanded="true" aria-label="Toggle code for prac4.cpp">−</button>
+      </div>
+    </div>
+    <div class="code-wrap">
+      <div class="code-scroll overflow-x-auto">
+        <pre class="code-pre"><code class="code-target"></code></pre>
+      </div>
+      <div class="flex items-center justify-between gap-4 border-t-2 border-ink px-4 py-2 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash">
+        <span><span class="card-lines">72</span> lines · 1361 chars</span>
+        <span class="flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 bg-ink"></span> C++</span>
+      </div>
+    </div>
+    <script type="text/x-cpp" class="source">#include <iostream>
+using namespace std;
+
+int main()
+{
+    int a[20][3], t[20][3];
+    int r, c, n, k = 1;
+
+    cout << "Enter rows and columns: ";
+    cin >> r >> c;
+
+    cout << "Enter number of non-zero elements: ";
+    cin >> n;
+
+    // Header row of original triplet matrix
+    a[0][0] = r;
+    a[0][1] = c;
+    a[0][2] = n;
+
+    cout << "Enter row, column and value:\n";
+
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> a[i][0] >> a[i][1] >> a[i][2];
+    }
+
+    // Display original triplet matrix
+    cout << "\nOriginal Triplet Matrix:\n";
+
+    for (int i = 0; i <= n; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            cout << a[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    // Header row of transpose
+    t[0][0] = c;
+    t[0][1] = r;
+    t[0][2] = n;
+
+    // Simple transpose
+    for (int col = 0; col < c; col++)
+    {
+        for (int i = 1; i <= n; i++)
+        {
+            if (a[i][1] == col)
+            {
+                t[k][0] = a[i][1];
+                t[k][1] = a[i][0];
+                t[k][2] = a[i][2];
+                k++;
+            }
+        }
+    }
+
+    // Display transpose
+    cout << "\nTranspose Triplet Matrix:\n";
+
+    for (int i = 0; i <= n; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            cout << t[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}</script>
+  </article>
+
+  <article id="p5" class="program min-w-0 scroll-mt-32 border-2 border-ink bg-card shadow-brutal" data-search="polynomial addition prac5.cpp classes / polynomials class-based input, display and addition of two polynomials">
+    <div class="flex flex-wrap items-stretch border-b-2 border-ink">
+      <div class="flex w-14 shrink-0 items-center justify-center border-r-2 border-ink bg-ink font-mono text-sm font-bold tabular-nums text-paper">05</div>
+      <div class="min-w-0 flex-1 px-4 py-3">
+        <h2 class="text-base font-bold uppercase leading-tight tracking-tight sm:text-lg">Polynomial Addition</h2>
+        <p class="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ash">
+          <span class="text-ink">Prac5.cpp</span>
+          <span aria-hidden="true">/</span>
+          <span>CLASSES / POLYNOMIALS</span>
+        </p>
+        <p class="mt-1.5 max-w-xl text-[12.5px] leading-snug text-ash">Class-based input, display and addition of two polynomials</p>
+      </div>
+      <div class="flex w-full items-stretch border-t-2 border-ink sm:w-auto sm:border-l-2 sm:border-t-0">
+        <button type="button" class="copy-btn flex flex-1 items-center justify-center gap-2 border-r-2 border-ink px-4 py-2.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper sm:w-28 sm:flex-none" data-copy aria-label="Copy the full source of Prac5.cpp">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="9" y="9" width="12" height="12"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>
+          <span class="copy-label">Copy</span>
+        </button>
+        <button type="button" class="toggle-btn w-11 shrink-0 text-lg font-bold leading-none transition-colors hover:bg-ink hover:text-paper" data-toggle aria-expanded="true" aria-label="Toggle code for Prac5.cpp">−</button>
+      </div>
+    </div>
+    <div class="code-wrap">
+      <div class="code-scroll overflow-x-auto">
+        <pre class="code-pre"><code class="code-target"></code></pre>
+      </div>
+      <div class="flex items-center justify-between gap-4 border-t-2 border-ink px-4 py-2 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash">
+        <span><span class="card-lines">106</span> lines · 1924 chars</span>
+        <span class="flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 bg-ink"></span> C++</span>
+      </div>
+    </div>
+    <script type="text/x-cpp" class="source">#include<iostream>
+using namespace std;
+
+
+    class polynomial{
+        int a[10], degree;
+
+
+    public:
+        void input(){
+            cin>>degree;
+
+            cout<<"Enter the coeff from x^0 to x^"<<degree<<":" <<endl;
+            for(int i = 0 ; i<=degree ; i++){
+
+                cin>>a[i];
+
+            }
+
+            cout<<endl;
+        }
+
+        void display(){
+
+            for(int i = degree ; i>=0 ; i--){
+                if(a[i]!=0 ){
+                    cout<<a[i];
+
+                }
+
+                if(i>0){
+                    cout<<"x";
+                }
+
+                if(i>1){
+                    cout<<"^"<<i;
+                }
+
+                if(i>0){
+                    cout<<"+";
+                }
+            }
+                cout<<endl;
+
+            
+        }
+
+            void add(polynomial p){
+                int max = (degree>p.degree) ? degree : p.degree;
+                cout<<"Sum:";
+
+                for(int i =  max ; i>=0; i--){
+                    int x = (i<=degree) ? a[i] : 0;
+                    int y = (i<=p.degree) ? p.a[i] : 0 ;
+
+
+                    int sum =  x+y;
+
+                    if(sum != 0 ){
+                        cout<<sum;
+
+                        if(i>0){
+                            cout<<"x";
+
+                        }
+                        if(i>1){
+                            cout<<"^"<<i;
+
+                        }
+
+                        if(i>0){
+                            cout<<"+";
+                        }
+                    }
+                }
+
+                    cout<<endl;
+
+
+
+                
+
+            }
+        };
+
+int main(){
+
+    polynomial p1,p2;
+
+    cout<<"Enter Degree of 1st Polynomial:"<<endl;
+    p1.input();
+
+    cout<<"Enter the Degree of 2nd Polynomial:"<<endl;
+    p2.input();
+
+    cout<<"First Polynomial:"<<endl;
+    p1.display();
+
+    cout<<"Second Polynomial:"<<endl;
+    p2.display();
+
+    p1.add(p2);
+
+
+
+}</script>
+  </article>
+
+  <article id="p6" class="program min-w-0 scroll-mt-32 border-2 border-ink bg-card shadow-brutal" data-search="appointment scheduler prc6.cpp linked list / scheduling doubly linked list booking, free slots, sorting and cancel">
+    <div class="flex flex-wrap items-stretch border-b-2 border-ink">
+      <div class="flex w-14 shrink-0 items-center justify-center border-r-2 border-ink bg-ink font-mono text-sm font-bold tabular-nums text-paper">06</div>
+      <div class="min-w-0 flex-1 px-4 py-3">
+        <h2 class="text-base font-bold uppercase leading-tight tracking-tight sm:text-lg">Appointment Scheduler</h2>
+        <p class="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ash">
+          <span class="text-ink">prc6.cpp</span>
+          <span aria-hidden="true">/</span>
+          <span>LINKED LIST / SCHEDULING</span>
+        </p>
+        <p class="mt-1.5 max-w-xl text-[12.5px] leading-snug text-ash">Doubly linked list booking, free slots, sorting and cancel</p>
+      </div>
+      <div class="flex w-full items-stretch border-t-2 border-ink sm:w-auto sm:border-l-2 sm:border-t-0">
+        <button type="button" class="copy-btn flex flex-1 items-center justify-center gap-2 border-r-2 border-ink px-4 py-2.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper sm:w-28 sm:flex-none" data-copy aria-label="Copy the full source of prc6.cpp">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="9" y="9" width="12" height="12"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>
+          <span class="copy-label">Copy</span>
+        </button>
+        <button type="button" class="toggle-btn w-11 shrink-0 text-lg font-bold leading-none transition-colors hover:bg-ink hover:text-paper" data-toggle aria-expanded="true" aria-label="Toggle code for prc6.cpp">−</button>
+      </div>
+    </div>
+    <div class="code-wrap">
+      <div class="code-scroll overflow-x-auto">
+        <pre class="code-pre"><code class="code-target"></code></pre>
+      </div>
+      <div class="flex items-center justify-between gap-4 border-t-2 border-ink px-4 py-2 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash">
+        <span><span class="card-lines">241</span> lines · 4972 chars</span>
+        <span class="flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 bg-ink"></span> C++</span>
+      </div>
+    </div>
+    <script type="text/x-cpp" class="source">#include <iostream>
+#include <string>
+using namespace std;
+struct Appointment {
+int start, end;
+string name;
+Appointment* prev;
+Appointment* next;
+};
+class Schedule {
+private:
+Appointment* head;
+int toMinutes(int h, int m) {
+return h * 60 + m;
+}
+void showTime(int t) {
+cout << (t / 60) << ":" << (t % 60 < 10 ? "0" : "") << t % 60;
+}
+bool overlap(int s, int e) {
+for (Appointment* p = head; p; p = p->next) {
+if (!(e <= p->start || s >= p->end)) {
+return true;
+}
+if (p->start > e) {
+break;
+}
+}
+return false;
+}
+public:
+Schedule() : head(nullptr) { }
+void bookAppointment() {
+int sh, sm, eh, em;
+string name;
+cout << "Enter name: ";
+cin >> name;
+cout << "Enter start time (hh mm): ";
+cin >> sh >> sm;
+cout << "Enter end time (hh mm): ";
+cin >> eh >> em;
+int s = toMinutes(sh, sm);
+int e = toMinutes(eh, em);
+if (s >= e || s < 540 || e > 1020) {
+cout << "Invalid time! Working hours: 9:00 - 17:00.\n";
+return;
+}
+if (e - s < 30) {
+cout << "Minimum slot is 30 minutes!\n";
+return;
+}
+if (overlap(s, e)) {
+cout << "Slot not free!\n";
+return;
+}
+Appointment* n = new Appointment{s, e, name, nullptr, nullptr};
+if (!head) {
+head = n;
+return;
+}
+Appointment* p = head;
+while (p->next && p->next->start < s) {
+p = p->next;
+}
+n->next = p->next;
+if (p->next) {
+p->next->prev = n;
+}
+n->prev = p;
+p->next = n;
+cout << "Appointment booked!\n";
+}
+void displayAppointments() {
+if (!head) {
+cout << "No appointments scheduled.\n";
+return;
+}
+cout << "\nAppointments:\n";
+for (Appointment* p = head; p; p = p->next) {
+showTime(p->start);
+cout << " - ";
+showTime(p->end);
+cout << " : " << p->name << "\n";
+}
+}
+void displayFreeSlots() {
+cout << "\nFree 30-Minute Slots:\n";
+if (!head) {
+cout << "9:00 - 17:00\n";
+return;
+}
+int prevEnd = 540;
+for (Appointment* p = head; p; p = p->next) {
+if (p->start > prevEnd) {
+showTime(prevEnd);
+cout << " - ";
+showTime(p->start);
+cout << "\n";
+}
+prevEnd = p->end;
+}
+if (prevEnd < 1020) {
+showTime(prevEnd);
+cout << " - 17:00\n";
+}
+}
+void cancelAppointment() {
+int h, m;
+cout << "Enter start time (hh mm): ";
+cin >> h >> m;
+int t = toMinutes(h, m);
+Appointment* p = head;
+while (p && p->start != t) {
+p = p->next;
+}
+if (!p) {
+cout << "Appointment not found!\n";
+return;
+}
+if (p->prev) {
+p->prev->next = p->next;
+} else {
+head = p->next;
+}
+if (p->next) {
+p->next->prev = p->prev;
+}
+delete p;
+cout << "Appointment cancelled successfully.\n";
+}
+void sortByData() {
+if (!head) return;
+for (Appointment* i = head; i && i->next; i = i->next) {
+for (Appointment* j = head; j && j->next; j = j->next) {
+if (j->start > j->next->start) {
+swap(j->start, j->next->start);
+swap(j->end, j->next->end);
+swap(j->name, j->next->name);
+}
+}
+}
+cout << "Appointments sorted by data.\n";
+displayAppointments();
+}
+void sortByPointer() {
+if (!head || !head->next) return;
+Appointment* sorted = nullptr;
+while (head) {
+Appointment* curr = head;
+head = head->next;
+curr->prev = curr->next = nullptr;
+if (!sorted || curr->start < sorted->start) {
+curr->next = sorted;
+if (sorted) sorted->prev = curr;
+sorted = curr;
+} else {
+Appointment* p = sorted;
+while (p->next && p->next->start < curr->start) {
+p = p->next;
+}
+curr->next = p->next;
+if (p->next) p->next->prev = curr;
+p->next = curr;
+curr->prev = p;
+}
+}
+head = sorted;
+cout << "Appointments sorted by pointer.\n";
+displayAppointments();
+}
+};
+int main() {
+Schedule s;
+int choice;
+do {
+cout << "\n===== APPOINTMENT MANAGEMENT =====\n";
+cout << "1. Book Appointment\n";
+cout << "2. Display Appointments\n";
+cout << "3. Display Free Slots\n";
+cout << "4. Cancel Appointment\n";
+cout << "5. Sort by Data\n";
+cout << "6. Sort by Pointer\n";
+cout << "7. Exit\n";
+cout << "Enter choice: ";
+cin >> choice;
+switch (choice) {
+case 1: s.bookAppointment(); break;
+case 2: s.displayAppointments(); break;
+case 3: s.displayFreeSlots(); break;
+case 4: s.cancelAppointment(); break;
+case 5: s.sortByData(); break;
+case 6: s.sortByPointer(); break;
+case 7: cout << "Exiting program...\n"; break;
+default: cout << "Invalid choice!\n";
+}
+} while (choice != 7);
+return 0;
+}
+/*
+hp@hp-HP-Pro-Tower-280-G9-PCI-Desktop-PC:~$ ./a.out
+===== APPOINTMENT MANAGEMENT =====
+1. Book Appointment
+2. Display Appointments
+3. Display Free Slots
+4. Cancel Appointment
+5. Sort by Data
+6. Sort by Pointer
+7. Exit
+Enter choice: 1
+Enter name: Riya
+Enter start time (hh mm): 9 30
+Enter end time (hh mm): 10 00
+Appointment booked!
+===== APPOINTMENT MANAGEMENT =====
+Enter choice: 1
+Enter name: John
+Enter start time (hh mm): 10 30
+Enter end time (hh mm): 11 30
+Appointment booked!
+===== APPOINTMENT MANAGEMENT =====
+Enter choice: 2
+Appointments:
+9:30 - 10:00 : Riya
+10:30 - 11:30 : John
+===== APPOINTMENT MANAGEMENT =====
+Enter choice: 3
+Free 30-Minute Slots:
+9:00 - 9:30
+10:00 - 10:30
+11:30 - 17:00
+===== APPOINTMENT MANAGEMENT =====
+Enter choice: 4
+Enter start time (hh mm): 9 30
+Appointment cancelled successfully.
+===== APPOINTMENT MANAGEMENT =====
+Enter choice: 2
+Appointments:
+10:30 - 11:30 : John
+===== APPOINTMENT MANAGEMENT =====
+Enter choice: 7
+Exiting program...
+*/</script>
+  </article>
+
+  <article id="p7" class="program min-w-0 scroll-mt-32 border-2 border-ink bg-card shadow-brutal" data-search="expression conversion prac7.cpp stack / expressions infix to prefix, postfix and all six conversions">
+    <div class="flex flex-wrap items-stretch border-b-2 border-ink">
+      <div class="flex w-14 shrink-0 items-center justify-center border-r-2 border-ink bg-ink font-mono text-sm font-bold tabular-nums text-paper">07</div>
+      <div class="min-w-0 flex-1 px-4 py-3">
+        <h2 class="text-base font-bold uppercase leading-tight tracking-tight sm:text-lg">Expression Conversion</h2>
+        <p class="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ash">
+          <span class="text-ink">prac7.cpp</span>
+          <span aria-hidden="true">/</span>
+          <span>STACK / EXPRESSIONS</span>
+        </p>
+        <p class="mt-1.5 max-w-xl text-[12.5px] leading-snug text-ash">Infix to prefix, postfix and all six conversions</p>
+      </div>
+      <div class="flex w-full items-stretch border-t-2 border-ink sm:w-auto sm:border-l-2 sm:border-t-0">
+        <button type="button" class="copy-btn flex flex-1 items-center justify-center gap-2 border-r-2 border-ink px-4 py-2.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper sm:w-28 sm:flex-none" data-copy aria-label="Copy the full source of prac7.cpp">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="9" y="9" width="12" height="12"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>
+          <span class="copy-label">Copy</span>
+        </button>
+        <button type="button" class="toggle-btn w-11 shrink-0 text-lg font-bold leading-none transition-colors hover:bg-ink hover:text-paper" data-toggle aria-expanded="true" aria-label="Toggle code for prac7.cpp">−</button>
+      </div>
+    </div>
+    <div class="code-wrap">
+      <div class="code-scroll overflow-x-auto">
+        <pre class="code-pre"><code class="code-target"></code></pre>
+      </div>
+      <div class="flex items-center justify-between gap-4 border-t-2 border-ink px-4 py-2 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash">
+        <span><span class="card-lines">373</span> lines · 8483 chars</span>
+        <span class="flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 bg-ink"></span> C++</span>
+      </div>
+    </div>
+    <script type="text/x-cpp" class="source">#include <iostream>     // For cin and cout
+#include <stack>        // For using stack
+#include <string>       // For using string
+#include <algorithm>    // For using reverse()
+using namespace std;
+
+
+// FUNCTION 1: Check whether character is an operator
+bool isOperator(char c) {
+
+    // If c matches any operator, return true
+    return (c == '+' || c == '-' || c == '*' ||
+            c == '/' || c == '^');
+}
+
+
+// FUNCTION 2: Find priority of operators
+int priority(char c) {
+
+    // ^ has highest priority
+    if (c == '^')
+        return 3;
+
+    // * and / have second priority
+    if (c == '*' || c == '/')
+        return 2;
+
+    // + and - have lowest priority
+    if (c == '+' || c == '-')
+        return 1;
+
+    // Return 0 for other characters like brackets
+    return 0;
+}
+
+
+// FUNCTION 3: INFIX TO POSTFIX
+string infixToPostfix(string s) {
+
+    // Stack stores operators
+    stack<char> st;
+
+    // Stores the final postfix expression
+    string result = "";
+
+    // Read expression one character at a time
+    for (char c : s) {
+
+        // If character is an operand, add directly to result
+        if (isalnum(c)) {
+            result += c;
+        }
+
+        // If opening bracket comes, push it into stack
+        else if (c == '(') {
+            st.push(c);
+        }
+
+        // If closing bracket comes
+        else if (c == ')') {
+
+            // Pop operators until opening bracket is found
+            while (!st.empty() && st.top() != '(') {
+
+                // Add top operator to result
+                result += st.top();
+
+                // Remove that operator from stack
+                st.pop();
+            }
+
+            // Remove opening bracket
+            if (!st.empty())
+                st.pop();
+        }
+
+        // If character is an operator
+        else {
+
+            // Remove operators having higher or equal priority
+            while (!st.empty() && st.top() != '(' &&
+                   priority(c) <= priority(st.top())) {
+
+                // Add operator to result
+                result += st.top();
+
+                // Remove operator from stack
+                st.pop();
+            }
+
+            // Push current operator into stack
+            st.push(c);
+        }
+    }
+
+    // Remove all remaining operators from stack
+    while (!st.empty()) {
+        result += st.top();
+        st.pop();
+    }
+
+    // Return final postfix expression
+    return result;
+}
+
+
+// FUNCTION 4: INFIX TO PREFIX
+string infixToPrefix(string s) {
+
+    // Step 1: Reverse the infix expression
+    reverse(s.begin(), s.end());
+
+    // Step 2: Change opening brackets to closing and vice versa
+    for (int i = 0; i < s.length(); i++) {
+
+        if (s[i] == '(')
+            s[i] = ')';
+
+        else if (s[i] == ')')
+            s[i] = '(';
+    }
+
+    // Step 3: Convert reversed expression into postfix
+    string result = infixToPostfix(s);
+
+    // Step 4: Reverse postfix to get prefix
+    reverse(result.begin(), result.end());
+
+    // Return final prefix expression
+    return result;
+}
+
+
+// FUNCTION 5: PREFIX TO INFIX
+string prefixToInfix(string s) {
+
+    // Stack stores strings because expressions are combined
+    stack<string> st;
+
+    // Prefix is processed from right to left
+    reverse(s.begin(), s.end());
+
+    // Read each character
+    for (char c : s) {
+
+        // If it is an operand
+        if (!isOperator(c)) {
+
+            // Convert character into string and push it
+            st.push(string(1, c));
+        }
+
+        // If it is an operator
+        else {
+
+            // Take first popped operand
+            string a = st.top();
+            st.pop();
+
+            // Take second popped operand
+            string b = st.top();
+            st.pop();
+
+            // Combine in infix form and push back
+            st.push("(" + a + c + b + ")");
+        }
+    }
+
+    // Return final infix expression
+    return st.top();
+}
+
+
+// FUNCTION 6: PREFIX TO POSTFIX
+string prefixToPostfix(string s) {
+
+    // Stack stores operands and partial expressions
+    stack<string> st;
+
+    // Read prefix from right to left
+    reverse(s.begin(), s.end());
+
+    for (char c : s) {
+
+        // If character is an operand
+        if (!isOperator(c)) {
+
+            // Convert character into string and push
+            st.push(string(1, c));
+        }
+
+        // If character is an operator
+        else {
+
+            // Get first operand
+            string a = st.top();
+            st.pop();
+
+            // Get second operand
+            string b = st.top();
+            st.pop();
+
+            // Combine with operator at the end (postfix)
+            st.push(a + b + c);
+        }
+    }
+
+    // Return final postfix expression
+    return st.top();
+}
+
+
+// FUNCTION 7: POSTFIX TO INFIX
+string postfixToInfix(string s) {
+
+    // Stack stores strings
+    stack<string> st;
+
+    // Read postfix from left to right
+    for (char c : s) {
+
+        // If character is an operand
+        if (!isOperator(c)) {
+
+            // Convert character into string and push
+            st.push(string(1, c));
+        }
+
+        // If character is an operator
+        else {
+
+            // First popped element is second operand
+            string b = st.top();
+            st.pop();
+
+            // Second popped element is first operand
+            string a = st.top();
+            st.pop();
+
+            // Combine in infix form and push back
+            st.push("(" + a + c + b + ")");
+        }
+    }
+
+    // Return final infix expression
+    return st.top();
+}
+
+
+// FUNCTION 8: POSTFIX TO PREFIX
+string postfixToPrefix(string s) {
+
+    // Stack stores strings
+    stack<string> st;
+
+    // Read postfix from left to right
+    for (char c : s) {
+
+        // If character is an operand
+        if (!isOperator(c)) {
+
+            // Convert character into string and push
+            st.push(string(1, c));
+        }
+
+        // If character is an operator
+        else {
+
+            // Get second operand first
+            string b = st.top();
+            st.pop();
+
+            // Get first operand
+            string a = st.top();
+            st.pop();
+
+            // Combine with operator at the beginning (prefix)
+            st.push(c + a + b);
+        }
+    }
+
+    // Return final prefix expression
+    return st.top();
+}
+
+
+// MAIN FUNCTION
+int main() {
+
+    // Stores user's menu choice
+    int choice;
+
+    // Stores the expression entered by user
+    string exp;
+
+    // Display menu repeatedly until user exits
+    do {
+
+        cout << "\n--- EXPRESSION CONVERSION ---\n";
+        cout << "1. Infix to Prefix\n";
+        cout << "2. Prefix to Postfix\n";
+        cout << "3. Prefix to Infix\n";
+        cout << "4. Postfix to Infix\n";
+        cout << "5. Postfix to Prefix\n";
+        cout << "6. Exit\n";
+
+        // Take user's choice
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        // Execute selected operation
+            switch (choice) {
+
+                case 1:
+                    cout << "Enter Infix: ";
+                    cin >> exp;
+
+                    // Call infixToPrefix function
+                    cout << "Prefix: " << infixToPrefix(exp);
+                    break;
+
+
+                case 2:
+                    cout << "Enter Prefix: ";
+                    cin >> exp;
+
+                    // Call prefixToPostfix function
+                    cout << "Postfix: " << prefixToPostfix(exp);
+                    break;
+
+
+                case 3:
+                    cout << "Enter Prefix: ";
+                    cin >> exp;
+
+                    // Call prefixToInfix function
+                    cout << "Infix: " << prefixToInfix(exp);
+                    break;
+
+
+                case 4:
+                    cout << "Enter Postfix: ";
+                    cin >> exp;
+
+                    // Call postfixToInfix function
+                    cout << "Infix: " << postfixToInfix(exp);
+                    break;
+
+
+                case 5:
+                    cout << "Enter Postfix: ";
+                    cin >> exp;
+
+                    // Call postfixToPrefix function
+                    cout << "Prefix: " << postfixToPrefix(exp);
+                    break;
+
+
+                case 6:
+                    cout << "Program Ended!";
+                    break;
+
+
+                // If user enters an invalid option
+                default:
+                    cout << "Invalid Choice!";
+            }
+
+        } while (choice != 6);
+
+        // End program successfully
+        return 0;
+    }</script>
+  </article>
+
+  <article id="p8" class="program min-w-0 scroll-mt-32 border-2 border-ink bg-card shadow-brutal" data-search="reverse &amp; palindrome prac8.cpp stack / strings stack-based reversal plus alphanumeric palindrome check">
+    <div class="flex flex-wrap items-stretch border-b-2 border-ink">
+      <div class="flex w-14 shrink-0 items-center justify-center border-r-2 border-ink bg-ink font-mono text-sm font-bold tabular-nums text-paper">08</div>
+      <div class="min-w-0 flex-1 px-4 py-3">
+        <h2 class="text-base font-bold uppercase leading-tight tracking-tight sm:text-lg">Reverse &amp; Palindrome</h2>
+        <p class="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ash">
+          <span class="text-ink">prac8.cpp</span>
+          <span aria-hidden="true">/</span>
+          <span>STACK / STRINGS</span>
+        </p>
+        <p class="mt-1.5 max-w-xl text-[12.5px] leading-snug text-ash">Stack-based reversal plus alphanumeric palindrome check</p>
+      </div>
+      <div class="flex w-full items-stretch border-t-2 border-ink sm:w-auto sm:border-l-2 sm:border-t-0">
+        <button type="button" class="copy-btn flex flex-1 items-center justify-center gap-2 border-r-2 border-ink px-4 py-2.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper sm:w-28 sm:flex-none" data-copy aria-label="Copy the full source of prac8.cpp">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="9" y="9" width="12" height="12"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>
+          <span class="copy-label">Copy</span>
+        </button>
+        <button type="button" class="toggle-btn w-11 shrink-0 text-lg font-bold leading-none transition-colors hover:bg-ink hover:text-paper" data-toggle aria-expanded="true" aria-label="Toggle code for prac8.cpp">−</button>
+      </div>
+    </div>
+    <div class="code-wrap">
+      <div class="code-scroll overflow-x-auto">
+        <pre class="code-pre"><code class="code-target"></code></pre>
+      </div>
+      <div class="flex items-center justify-between gap-4 border-t-2 border-ink px-4 py-2 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash">
+        <span><span class="card-lines">50</span> lines · 821 chars</span>
+        <span class="flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 bg-ink"></span> C++</span>
+      </div>
+    </div>
+    <script type="text/x-cpp" class="source">#include<iostream>
+#include<string>
+#include<stack>
+using namespace std;
+
+string reverse(string str){
+    stack<char> s;
+    string rev = "";
+
+    for(char c:str){
+        s.push(c);
+    }
+
+    while(!s.empty()){
+        rev+=s.top();
+        s.pop();
+    }
+
+    return rev;
+        
+}
+
+bool is_palindrome(string str){
+    string clean = "";
+
+    for(char c : str){
+        if(isalnum(c)){
+            clean += tolower(c);
+        }
+    }
+
+    return clean == reverse(clean);
+}
+int main(){
+    string str;
+
+    cout << "Enter a string: ";
+    getline(cin, str);
+
+    cout << "Original String: " << str << endl;
+    cout << "Reversed String: " << reverse(str) << endl;
+
+    if (is_palindrome(str))
+        cout << "The string is a palindrome.";
+    else
+        cout << "The string is not a palindrome.";
+
+    return 0;
+
+}</script>
+  </article>
+
+  <article id="p9" class="program min-w-0 scroll-mt-32 border-2 border-ink bg-card shadow-brutal" data-search="order queue prac9.cpp queue / stl stl queue restaurant orders, max ten at a time">
+    <div class="flex flex-wrap items-stretch border-b-2 border-ink">
+      <div class="flex w-14 shrink-0 items-center justify-center border-r-2 border-ink bg-ink font-mono text-sm font-bold tabular-nums text-paper">09</div>
+      <div class="min-w-0 flex-1 px-4 py-3">
+        <h2 class="text-base font-bold uppercase leading-tight tracking-tight sm:text-lg">Order Queue</h2>
+        <p class="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ash">
+          <span class="text-ink">prac9.cpp</span>
+          <span aria-hidden="true">/</span>
+          <span>QUEUE / STL</span>
+        </p>
+        <p class="mt-1.5 max-w-xl text-[12.5px] leading-snug text-ash">STL queue restaurant orders, max ten at a time</p>
+      </div>
+      <div class="flex w-full items-stretch border-t-2 border-ink sm:w-auto sm:border-l-2 sm:border-t-0">
+        <button type="button" class="copy-btn flex flex-1 items-center justify-center gap-2 border-r-2 border-ink px-4 py-2.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper sm:w-28 sm:flex-none" data-copy aria-label="Copy the full source of prac9.cpp">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="9" y="9" width="12" height="12"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>
+          <span class="copy-label">Copy</span>
+        </button>
+        <button type="button" class="toggle-btn w-11 shrink-0 text-lg font-bold leading-none transition-colors hover:bg-ink hover:text-paper" data-toggle aria-expanded="true" aria-label="Toggle code for prac9.cpp">−</button>
+      </div>
+    </div>
+    <div class="code-wrap">
+      <div class="code-scroll overflow-x-auto">
+        <pre class="code-pre"><code class="code-target"></code></pre>
+      </div>
+      <div class="flex items-center justify-between gap-4 border-t-2 border-ink px-4 py-2 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash">
+        <span><span class="card-lines">72</span> lines · 1287 chars</span>
+        <span class="flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 bg-ink"></span> C++</span>
+      </div>
+    </div>
+    <script type="text/x-cpp" class="source">#include<iostream>
+#include<queue>
+using namespace std;
+
+queue<int> q;
+const int MAX = 10;
+
+int main(){
+
+    int choice,order;
+
+    do{
+        cout << "\n1. Place Order";
+        cout << "\n2. Serve Order";
+        cout << "\n3. Display Orders";
+        cout << "\n4. Exit";
+        cout << "\nEnter choice: ";
+
+        cin>>choice;
+    
+
+    switch(choice){
+        case 1:
+             if(q.size() == MAX){
+                cout<<"Max orders are there";
+
+             }
+
+             else{
+                cout<<"Enter order nummber";
+                cin>>order;
+             
+             q.push(order);
+             cout<<"Order placed";
+             }
+             break;
+
+        case 2:
+             if (!q.empty()){
+
+                cout<<"Order Served";
+                cout<< q.front();
+                q.pop();
+
+             }
+             break;
+        case 3:
+             if(!q.empty()){
+                queue<int> tem = q;
+
+                while(!tem.empty()){
+                    cout<<tem.front()<<endl;
+                    tem.pop();
+
+                }
+
+                cout<<endl;
+
+                break;
+             }
+             
+        case 4:
+           cout<<"EXITING";
+
+        default:cout<<"Invalid Choice";   
+    }   
+    
+}
+
+    while(choice!=4);
+
+}    </script>
+  </article>
+
+  <article id="p10" class="program min-w-0 scroll-mt-32 border-2 border-ink bg-card shadow-brutal" data-search="sorting marks pr10.cpp sorting / arrays five sorting algorithms, stl sort and top five scores">
+    <div class="flex flex-wrap items-stretch border-b-2 border-ink">
+      <div class="flex w-14 shrink-0 items-center justify-center border-r-2 border-ink bg-ink font-mono text-sm font-bold tabular-nums text-paper">10</div>
+      <div class="min-w-0 flex-1 px-4 py-3">
+        <h2 class="text-base font-bold uppercase leading-tight tracking-tight sm:text-lg">Sorting Marks</h2>
+        <p class="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ash">
+          <span class="text-ink">pr10.cpp</span>
+          <span aria-hidden="true">/</span>
+          <span>SORTING / ARRAYS</span>
+        </p>
+        <p class="mt-1.5 max-w-xl text-[12.5px] leading-snug text-ash">Five sorting algorithms, STL sort and top five scores</p>
+      </div>
+      <div class="flex w-full items-stretch border-t-2 border-ink sm:w-auto sm:border-l-2 sm:border-t-0">
+        <button type="button" class="copy-btn flex flex-1 items-center justify-center gap-2 border-r-2 border-ink px-4 py-2.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper sm:w-28 sm:flex-none" data-copy aria-label="Copy the full source of pr10.cpp">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="9" y="9" width="12" height="12"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>
+          <span class="copy-label">Copy</span>
+        </button>
+        <button type="button" class="toggle-btn w-11 shrink-0 text-lg font-bold leading-none transition-colors hover:bg-ink hover:text-paper" data-toggle aria-expanded="true" aria-label="Toggle code for pr10.cpp">−</button>
+      </div>
+    </div>
+    <div class="code-wrap">
+      <div class="code-scroll overflow-x-auto">
+        <pre class="code-pre"><code class="code-target"></code></pre>
+      </div>
+      <div class="flex items-center justify-between gap-4 border-t-2 border-ink px-4 py-2 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash">
+        <span><span class="card-lines">135</span> lines · 3726 chars</span>
+        <span class="flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 bg-ink"></span> C++</span>
+      </div>
+    </div>
+    <script type="text/x-cpp" class="source">/*
+Sorting: Write a C++ menu driven program to store the percentage of marks obtained by the students in an array. Write function for sorting array of floating point numbers in ascending order using
+1. Selection Sort
+2. Bubble sort
+3. Insertion sort
+4. Shell Sort
+5. Quick sort
+6. Radix sort
+7. Display top five scores
+Implement any 4 methods of sorting. Provide choice to user to take input from user or using random numbers.
+Use Standard Template Library (STL) sort function
+*/
+#include <iostream>
+#include <algorithm> 
+#include <cstdlib>   
+using namespace std;
+
+class Sorting {
+public:
+ 
+    void selectionSort(float arr[], int n) {
+        for (int i = 0; i < n - 1; ++i) {
+            int minIndex = i;
+            for (int j = i + 1; j < n; ++j)
+                if (arr[j] < arr[minIndex])
+                    minIndex = j;
+            swap(arr[i], arr[minIndex]);
+        }
+    }
+
+    
+    void bubbleSort(float arr[], int n) {
+        for (int i = 0; i < n - 1; ++i)
+            for (int j = 0; j < n - i - 1; ++j)
+                if (arr[j] > arr[j + 1])
+                    swap(arr[j], arr[j + 1]);
+    }
+
+ 
+    void insertionSort(float arr[], int n) {
+        for (int i = 1; i < n; ++i) {
+            float key = arr[i];
+            int j = i - 1;
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+            arr[j + 1] = key;
+        }
+    }
+
+  
+    void shellSort(float arr[], int n) {
+        for (int gap = n / 2; gap > 0; gap /= 2) {
+            for (int i = gap; i < n; ++i) {
+                float temp = arr[i];
+                int j = i;
+                while (j >= gap && arr[j - gap] > temp) {
+                    arr[j] = arr[j - gap];
+                    j -= gap;
+                }
+                arr[j] = temp;
+            }
+        }
+    }
+
+  
+    int partition(float arr[], int low, int high) {
+        float pivot = arr[high];
+        int i = low - 1;
+        for (int j = low; j < high; ++j)
+            if (arr[j] < pivot)
+                swap(arr[++i], arr[j]);
+        swap(arr[i + 1], arr[high]);
+        return i + 1;
+    }
+
+    void quickSort(float arr[], int low, int high) {
+        if (low < high) {
+            int pi = partition(arr, low, high);
+            quickSort(arr, low, pi - 1);
+            quickSort(arr, pi + 1, high);
+        }
+    }
+
+   
+    void displayTopFive(float arr[], int n) {
+        cout << "\nTop 5 Scores: ";
+        for (int i = n - 1; i >= max(0, n - 5); --i)
+            cout << arr[i] << " ";
+        cout << endl;
+    }
+};
+
+int main() {
+    Sorting s;
+    int n, choice;
+    cout << "Enter number of students: ";
+    cin >> n;
+    float arr[100];
+
+    cout << "1. Manual Input\n2. Random Data\nEnter choice: ";
+    cin >> choice;
+
+    if (choice == 1) {
+        cout << "Enter percentages:\n";
+        for (int i = 0; i < n; ++i)
+            cin >> arr[i];
+    } else {
+        for (int i = 0; i < n; ++i)
+            arr[i] = rand() % 101;  // 0-100 random %
+    }
+
+    cout << "\nChoose Sorting Algorithm:\n";
+    cout << "1. Selection Sort\n2. Bubble Sort\n3. Insertion Sort\n4. Shell Sort\n";
+    cout << "5. Quick Sort\n6. STL Sort\nEnter your choice: ";
+    cin >> choice;
+
+    switch (choice) {
+        case 1: s.selectionSort(arr, n); break;
+        case 2: s.bubbleSort(arr, n); break;
+        case 3: s.insertionSort(arr, n); break;
+        case 4: s.shellSort(arr, n); break;
+        case 5: s.quickSort(arr, 0, n - 1); break;
+        case 6: sort(arr, arr + n); break;
+        default: cout << "Invalid choice!\n"; return 0;
+    }
+
+    cout << "\nSorted Marks: ";
+    for (int i = 0; i < n; ++i)
+        cout << arr[i] << " ";
+
+    s.displayTopFive(arr, n);
+    return 0;
+}</script>
+  </article>
+
+  <article id="p11" class="program min-w-0 scroll-mt-32 border-2 border-ink bg-card shadow-brutal" data-search="dictionary hash table pr11.cpp hashing / chaining insert, find and delete with collision chaining">
+    <div class="flex flex-wrap items-stretch border-b-2 border-ink">
+      <div class="flex w-14 shrink-0 items-center justify-center border-r-2 border-ink bg-ink font-mono text-sm font-bold tabular-nums text-paper">11</div>
+      <div class="min-w-0 flex-1 px-4 py-3">
+        <h2 class="text-base font-bold uppercase leading-tight tracking-tight sm:text-lg">Dictionary Hash Table</h2>
+        <p class="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ash">
+          <span class="text-ink">pr11.cpp</span>
+          <span aria-hidden="true">/</span>
+          <span>HASHING / CHAINING</span>
+        </p>
+        <p class="mt-1.5 max-w-xl text-[12.5px] leading-snug text-ash">Insert, find and delete with collision chaining</p>
+      </div>
+      <div class="flex w-full items-stretch border-t-2 border-ink sm:w-auto sm:border-l-2 sm:border-t-0">
+        <button type="button" class="copy-btn flex flex-1 items-center justify-center gap-2 border-r-2 border-ink px-4 py-2.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper sm:w-28 sm:flex-none" data-copy aria-label="Copy the full source of pr11.cpp">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="9" y="9" width="12" height="12"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>
+          <span class="copy-label">Copy</span>
+        </button>
+        <button type="button" class="toggle-btn w-11 shrink-0 text-lg font-bold leading-none transition-colors hover:bg-ink hover:text-paper" data-toggle aria-expanded="true" aria-label="Toggle code for pr11.cpp">−</button>
+      </div>
+    </div>
+    <div class="code-wrap">
+      <div class="code-scroll overflow-x-auto">
+        <pre class="code-pre"><code class="code-target"></code></pre>
+      </div>
+      <div class="flex items-center justify-between gap-4 border-t-2 border-ink px-4 py-2 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash">
+        <span><span class="card-lines">112</span> lines · 3111 chars</span>
+        <span class="flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 bg-ink"></span> C++</span>
+      </div>
+    </div>
+    <script type="text/x-cpp" class="source">/*
+Name:Aditya Patil
+Roll No: 42
+
+A Dictionary using Hash table: A Dictionary stores key and value pairs Data: Set of (key, value) pairs, Keys are mapped to values, Keys must be comparable, Keys must be unique.
+Standard Operations: Insert(key, value), Find(key), Delete(key)
+Write a menu driven C++ program to provide above standard operations on dictionaries
+Write a menu driven C++ program to provide all the functions of a dictionary (ADT) using hashing and handle collisions using chaining.
+*/
+#include <iostream>
+#include <list>
+#include <string>
+using namespace std;
+
+class HashTable {
+    int SIZE;
+    list<pair<int, string>>* table;
+
+    int hashFunction(int key) {
+        return key % SIZE;
+    }
+
+public:
+    HashTable(int size) {
+        SIZE = size;
+        table = new list<pair<int, string>>[SIZE];
+    }
+
+    void insert(int key, string value) {
+        int index = hashFunction(key);
+        for (auto &p : table[index]) {
+            if (p.first == key) {
+                p.second = value;
+                cout << "Updated (" << key << ", " << value << ")\n";
+                return;
+            }
+        }
+        table[index].push_back({key, value});
+        cout << "Inserted (" << key << ", " << value << ")\n";
+    }
+
+    void find(int key) {
+        int index = hashFunction(key);
+        for (auto &p : table[index]) {
+            if (p.first == key) {
+                cout << "Found (" << key << ", " << p.second << ")\n";
+                return;
+            }
+        }
+        cout << "Key not found!\n";
+    }
+
+    void remove(int key) {
+        int index = hashFunction(key);
+        for (auto it = table[index].begin(); it != table[index].end(); ++it) {
+            if (it->first == key) {
+                table[index].erase(it);
+                cout << "Deleted key: " << key << endl;
+                return;
+            }
+        }
+        cout << "Key not found!\n";
+    }
+
+    void display() {
+        cout << "\n--- Hash Table ---\n";
+        for (int i = 0; i < SIZE; i++) {
+            cout << "Bucket " << i << ": ";
+            for (auto &p : table[i])
+                cout << "(" << p.first << ", " << p.second << ") ";
+            cout << endl;
+        }
+    }
+};
+
+int main() {
+    int size;
+    cout << "Enter size of hash table: ";
+    cin >> size;
+
+    HashTable dict(size);
+    int choice, key;
+    string value;
+
+    do {
+        cout << "\n1. Insert\n2. Find\n3. Delete\n4. Display\n5. Exit\nEnter choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                cout << "Enter key and value: ";
+                cin >> key >> value;
+                dict.insert(key, value);
+                break;
+            case 2:
+                cout << "Enter key to find: ";
+                cin >> key;
+                dict.find(key);
+                break;
+            case 3:
+                cout << "Enter key to delete: ";
+                cin >> key;
+                dict.remove(key);
+                break;
+            case 4:
+                dict.display();
+                break;
+        }
+    } while (choice != 5);
+
+    return 0;
+}</script>
+  </article>
+
+  <article id="p12" class="program min-w-0 scroll-mt-32 border-2 border-ink bg-card shadow-brutal" data-search="environment analysis prac12.cpp structs / analysis temperature, humidity and pollution statistics &amp; impact">
+    <div class="flex flex-wrap items-stretch border-b-2 border-ink">
+      <div class="flex w-14 shrink-0 items-center justify-center border-r-2 border-ink bg-ink font-mono text-sm font-bold tabular-nums text-paper">12</div>
+      <div class="min-w-0 flex-1 px-4 py-3">
+        <h2 class="text-base font-bold uppercase leading-tight tracking-tight sm:text-lg">Environment Analysis</h2>
+        <p class="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ash">
+          <span class="text-ink">prac12.cpp</span>
+          <span aria-hidden="true">/</span>
+          <span>STRUCTS / ANALYSIS</span>
+        </p>
+        <p class="mt-1.5 max-w-xl text-[12.5px] leading-snug text-ash">Temperature, humidity and pollution statistics &amp; impact</p>
+      </div>
+      <div class="flex w-full items-stretch border-t-2 border-ink sm:w-auto sm:border-l-2 sm:border-t-0">
+        <button type="button" class="copy-btn flex flex-1 items-center justify-center gap-2 border-r-2 border-ink px-4 py-2.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper sm:w-28 sm:flex-none" data-copy aria-label="Copy the full source of prac12.cpp">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="9" y="9" width="12" height="12"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>
+          <span class="copy-label">Copy</span>
+        </button>
+        <button type="button" class="toggle-btn w-11 shrink-0 text-lg font-bold leading-none transition-colors hover:bg-ink hover:text-paper" data-toggle aria-expanded="true" aria-label="Toggle code for prac12.cpp">−</button>
+      </div>
+    </div>
+    <div class="code-wrap">
+      <div class="code-scroll overflow-x-auto">
+        <pre class="code-pre"><code class="code-target"></code></pre>
+      </div>
+      <div class="flex items-center justify-between gap-4 border-t-2 border-ink px-4 py-2 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ash">
+        <span><span class="card-lines">165</span> lines · 4514 chars</span>
+        <span class="flex items-center gap-1.5"><span class="inline-block h-1.5 w-1.5 bg-ink"></span> C++</span>
+      </div>
+    </div>
+    <script type="text/x-cpp" class="source">#include <iostream>
+#include <algorithm>
+using namespace std;
+
+struct Environment {
+    int temp, humid, pollution;
+};
+
+int main() {
+    Environment a[50];
+    int n, choice;
+
+    cout << "Enter number of entries: ";
+    cin >> n;
+
+    if (n < 1 || n > 50) {
+        cout << "Invalid number of entries";
+        return 0;
+    }
+
+    for (int i = 0; i < n; i++) {
+        cout << "Enter temperature, humidity and pollution: ";
+        cin >> a[i].temp >> a[i].humid >> a[i].pollution;
+    }
+
+    do {
+        cout << "\n1. Display Data";
+        cout << "\n2. Average";
+        cout << "\n3. Maximum and Minimum";
+        cout << "\n4. Check Safe Values";
+        cout << "\n5. Sort by Temperature";
+        cout << "\n6. Impact Analysis";
+        cout << "\n7. Exit";
+        cout << "\nEnter choice: ";
+        cin >> choice;
+
+        switch (choice) {
+
+        case 1:
+            cout << "\nTemp\tHumidity\tPollution\n";
+            for (int i = 0; i < n; i++) {
+                cout << a[i].temp << "\t"
+                     << a[i].humid << "\t\t"
+                     << a[i].pollution << endl;
+            }
+            break;
+
+        case 2: {
+            float t = 0, h = 0, p = 0;
+
+            for (int i = 0; i < n; i++) {
+                t += a[i].temp;
+                h += a[i].humid;
+                p += a[i].pollution;
+            }
+
+            cout << "Average Temperature: " << t/n << endl;
+            cout << "Average Humidity: " << h/n << endl;
+            cout << "Average Pollution: " << p/n << endl;
+            break;
+        }
+
+        case 3: {
+            int maxt = a[0].temp, mint = a[0].temp;
+            int maxh = a[0].humid, minh = a[0].humid;
+            int maxp = a[0].pollution, minp = a[0].pollution;
+
+            for (int i = 1; i < n; i++) {
+                maxt = max(maxt, a[i].temp);
+                mint = min(mint, a[i].temp);
+
+                maxh = max(maxh, a[i].humid);
+                minh = min(minh, a[i].humid);
+
+                maxp = max(maxp, a[i].pollution);
+                minp = min(minp, a[i].pollution);
+            }
+
+            cout << "Max Temperature: " << maxt << endl;
+            cout << "Min Temperature: " << mint << endl;
+            cout << "Max Humidity: " << maxh << endl;
+            cout << "Min Humidity: " << minh << endl;
+            cout << "Max Pollution: " << maxp << endl;
+            cout << "Min Pollution: " << minp << endl;
+            break;
+        }
+
+        case 4: {
+            int maxt = a[0].temp;
+            int maxh = a[0].humid;
+            int maxp = a[0].pollution;
+
+            for (int i = 1; i < n; i++) {
+                maxt = max(maxt, a[i].temp);
+                maxh = max(maxh, a[i].humid);
+                maxp = max(maxp, a[i].pollution);
+            }
+
+            if (maxt > 45)
+                cout << "Unsafe Temperature\n";
+            else
+                cout << "Safe Temperature\n";
+
+            if (maxh > 40)
+                cout << "High Humidity\n";
+            else
+                cout << "Normal Humidity\n";
+
+            if (maxp > 300)
+                cout << "High Pollution\n";
+            else
+                cout << "Normal Pollution\n";
+
+            break;
+        }
+
+        case 5:
+            sort(a, a + n, [](Environment x, Environment y) {
+                return x.temp < y.temp;
+            });
+
+            cout << "Data sorted by temperature:\n";
+            for (int i = 0; i < n; i++) {
+                cout << a[i].temp << "\t"
+                     << a[i].humid << "\t"
+                     << a[i].pollution << endl;
+            }
+            break;
+
+        case 6: {
+            int maxt = a[0].temp;
+            int maxh = a[0].humid;
+            int maxp = a[0].pollution;
+
+            for (int i = 1; i < n; i++) {
+                maxt = max(maxt, a[i].temp);
+                maxh = max(maxh, a[i].humid);
+                maxp = max(maxp, a[i].pollution);
+            }
+
+            if (maxt > 35 && maxh > 30)
+                cout << "Heat and humidity may cause discomfort.\n";
+
+            if (maxp > 200)
+                cout << "Pollution may cause health problems.\n";
+
+            if (maxt <= 35 && maxp <= 200)
+                cout << "Environmental conditions are normal.\n";
+
+            cout << "Impact analysis completed.\n";
+            break;
+        }
+
+        case 7:
+            cout << "Exiting program.";
+            break;
+
+        default:
+            cout << "Invalid choice";
+        }
+
+    } while (choice != 7);
+
+    return 0;
+}</script>
+  </article>
+    </div>
+    <p id="empty" class="hidden border-2 border-dashed border-ink/40 p-10 text-center font-mono text-[11px] uppercase tracking-[0.2em] text-ash">No programs match that search.</p>
+  </main>
+
+  <footer class="border-t-2 border-ink bg-ink text-paper">
+    <div class="mx-auto flex max-w-6xl flex-wrap items-end justify-between gap-6 px-5 py-8 sm:px-8 sm:py-10">
+      <div>
+        <div class="font-mono text-[9.5px] uppercase tracking-[0.3em] text-paper/50">// EOF</div>
+        <p class="mt-2 text-xl font-bold uppercase tracking-tight sm:text-2xl">Copy. Paste. Compile.</p>
+        <p class="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-paper/50">12 files · 1632 lines · one page</p>
+      </div>
+      <a href="#" class="border-2 border-paper px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.18em] transition hover:bg-paper hover:text-ink">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <div id="toast" role="status" class="pointer-events-none fixed bottom-6 left-1/2 z-50 -translate-x-1/2 translate-y-4 border-2 border-paper bg-ink px-5 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-paper opacity-0 shadow-[6px_6px_0_0_rgba(17,17,17,0.2)] transition-all duration-200">Copied to clipboard</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var KEYWORDS = new Set(('alignas alignof and auto bool break case catch char class const constexpr continue ' +
+    'default delete do double else enum explicit extern false float for friend goto if inline int long namespace new ' +
+    'noexcept nullptr operator private protected public return short signed sizeof static struct switch template this ' +
+    'throw true try typedef typename union unsigned using virtual void volatile while').split(' '));
+
+  var TOKEN_RE = /\/\/[^\n]*|\/\*[\s\S]*?\*\/|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|^[ \t]*#[ \t]*\w+|\b\d+(?:\.\d+)?\b|\b[A-Za-z_]\w*\b/gm;
+
+  function esc(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function tokenize(code) {
+    var out = [];
+    var last = 0;
+    var m;
+    TOKEN_RE.lastIndex = 0;
+    while ((m = TOKEN_RE.exec(code)) !== null) {
+      if (m.index > last) out.push({ t: code.slice(last, m.index), c: '' });
+      var s = m[0];
+      var cls = '';
+      if (s.slice(0, 2) === '//' || s.slice(0, 2) === '/*') cls = 'tok-comment';
+      else if (s[0] === '"' || s[0] === "'") cls = 'tok-string';
+      else if (/^[ \t]*#/.test(s)) cls = 'tok-pre';
+      else if (/^\d/.test(s)) cls = 'tok-num';
+      else if (KEYWORDS.has(s)) cls = 'tok-key';
+      out.push({ t: s, c: cls });
+      last = m.index + s.length;
+    }
+    if (last < code.length) out.push({ t: code.slice(last), c: '' });
+    return out;
+  }
+
+  function highlight(code) {
+    var tokens = tokenize(code);
+    var lines = [[]];
+    tokens.forEach(function (tok) {
+      var parts = tok.t.split('\n');
+      parts.forEach(function (part, idx) {
+        if (idx > 0) lines.push([]);
+        if (part.length) {
+          lines[lines.length - 1].push(tok.c ? '<span class="' + tok.c + '">' + esc(part) + '</span>' : esc(part));
+        }
+      });
+    });
+    return lines.map(function (parts, i) {
+      return '<div class="cl"><span class="ln" aria-hidden="true">' + (i + 1) + '</span><span class="lc">' + (parts.join('') || ' ') + '</span></div>';
+    }).join('');
+  }
+
+  var articles = Array.prototype.slice.call(document.querySelectorAll('.program'));
+
+  articles.forEach(function (art) {
+    var source = art.querySelector('script.source');
+    var target = art.querySelector('.code-target');
+    var raw = source.textContent.replace(/^\n+/, '').replace(/\s+$/, '');
+    target.innerHTML = highlight(raw);
+  });
+
+  function toast(msg) {
+    var el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.remove('opacity-0', 'translate-y-4');
+    el.classList.add('opacity-100', 'translate-y-0');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function () {
+      el.classList.add('opacity-0', 'translate-y-4');
+      el.classList.remove('opacity-100', 'translate-y-0');
+    }, 1800);
+  }
+
+  function copyText(text, done) {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { fallback(text, done); });
+    } else {
+      fallback(text, done);
+    }
+  }
+
+  function fallback(text, done) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.top = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    done(Boolean(ok));
+  }
+
+  document.addEventListener('click', function (e) {
+    var copyBtn = e.target.closest('[data-copy]');
+    if (copyBtn) {
+      var art = copyBtn.closest('.program');
+      var text = art.querySelector('script.source').textContent.replace(/^\n+/, '').replace(/\s+$/, '');
+      copyText(text, function (ok) {
+        if (!ok) { toast('Copy failed — select manually'); return; }
+        var label = copyBtn.querySelector('.copy-label');
+        copyBtn.classList.add('copied');
+        label.textContent = 'Copied';
+        toast('Copied ' + art.querySelector('.card-lines').textContent + ' lines');
+        clearTimeout(copyBtn._t);
+        copyBtn._t = setTimeout(function () {
+          copyBtn.classList.remove('copied');
+          label.textContent = 'Copy';
+        }, 1600);
+      });
+      return;
+    }
+
+    var toggleBtn = e.target.closest('[data-toggle]');
+    if (toggleBtn) {
+      var card = toggleBtn.closest('.program');
+      var wrap = card.querySelector('.code-wrap');
+      var collapsed = wrap.classList.toggle('hidden');
+      toggleBtn.textContent = collapsed ? '+' : '−';
+      toggleBtn.setAttribute('aria-expanded', String(!collapsed));
+      updateToggleAll();
+    }
+  });
+
+  var search = document.getElementById('search');
+  var countEl = document.getElementById('count');
+  var emptyEl = document.getElementById('empty');
+
+  search.addEventListener('input', applyFilter);
+  search.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { search.value = ''; applyFilter(); }
+  });
+
+  function applyFilter() {
+    var q = search.value.trim().toLowerCase();
+    var shown = 0;
+    articles.forEach(function (art) {
+      var hit = !q || art.getAttribute('data-search').indexOf(q) !== -1;
+      art.classList.toggle('hidden', !hit);
+      if (hit) shown++;
+    });
+    countEl.textContent = 'Showing ' + shown + ' / ' + articles.length;
+    emptyEl.classList.toggle('hidden', shown !== 0);
+  }
+
+  document.addEventListener('keydown', function (e) {
+    var tag = document.activeElement && document.activeElement.tagName;
+    if (e.key === '/' && tag !== 'INPUT' && tag !== 'TEXTAREA') {
+      e.preventDefault();
+      search.focus();
+      search.select();
+    }
+  });
+
+  var toggleAll = document.getElementById('toggle-all');
+
+  toggleAll.addEventListener('click', function () {
+    var anyOpen = articles.some(function (art) {
+      return !art.querySelector('.code-wrap').classList.contains('hidden');
+    });
+    articles.forEach(function (art) {
+      var wrap = art.querySelector('.code-wrap');
+      var btn = art.querySelector('[data-toggle]');
+      wrap.classList.toggle('hidden', anyOpen);
+      btn.textContent = anyOpen ? '+' : '−';
+      btn.setAttribute('aria-expanded', String(!anyOpen));
+    });
+    toggleAll.textContent = anyOpen ? 'Expand all' : 'Collapse all';
+  });
+
+  function updateToggleAll() {
+    var anyOpen = articles.some(function (art) {
+      return !art.querySelector('.code-wrap').classList.contains('hidden');
+    });
+    var everyOpen = articles.every(function (art) {
+      return !art.querySelector('.code-wrap').classList.contains('hidden');
+    });
+    toggleAll.textContent = everyOpen ? 'Collapse all' : (anyOpen ? 'Expand all' : 'Expand all');
+  }
+
+  updateToggleAll();
+})();
+</script>
+</body>
+</html>
